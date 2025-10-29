@@ -1,0 +1,32 @@
+baseURL = 'https://www.seableed.com/'
+languageCode = 'fr-fr'
+title = 'Seableed'
+
+[params]
+  description = "Site officiel du groupe Seableed"
+  bandName = "Seableed"
+  genre = "Rock & co."
+  location = "Rennes, France"
+  email = "contact@seableed.com"
+
+[menu]
+  [[menu.main]]
+    name = "Accueil"
+    url = "/"
+    weight = 1
+#  [[menu.main]]
+#    name = "Musique"
+#    url = "/#musique"
+#    weight = 2
+  [[menu.main]]
+    name = "Concerts"
+    url = "/#concerts"
+    weight = 3
+  [[menu.main]]
+    name = "À propos"
+    url = "/#apropos"
+    weight = 4
+  [[menu.main]]
+    name = "Contact"
+    url = "/#contact"
+    weight = 5

@@ -1,0 +1,59 @@
+{{ define "main" }}
+<section class="hero" id="accueil">
+    <h1>{{ .Site.Params.bandName }}</h1>
+    <p>{{ .Site.Params.genre }} - {{ .Site.Params.location }}</p>
+<!--    <a href="#musique" class="btn">Écouter notre musique</a>-->
+</section>
+
+<!--<section id="musique">-->
+<!--    <h2>Notre Musique</h2>-->
+<!--    <div class="albums">-->
+<!--        {{ range .Site.Data.albums }}-->
+<!--        <div class="album">-->
+<!--            <div class="album-cover">{{ .cover }}</div>-->
+<!--            <h3>{{ .title }}</h3>-->
+<!--            <p>{{ .year }}</p>-->
+<!--            <a href="{{ .link }}" class="btn">Écouter</a>-->
+<!--        </div>-->
+<!--        {{ end }}-->
+<!--    </div>-->
+<!--</section>-->
+
+<section id="apropos">
+    <h2>À Propos</h2>
+    <div class="about">
+        {{ .Content }}
+    </div>
+</section>
+
+<section id="concerts">
+    <h2>Prochains Concerts</h2>
+    <div class="concerts">
+        {{ range .Site.Data.concerts }}
+        <div class="concert">
+            <div class="concert-date">{{ .date }}</div>
+            <div class="concert-venue">
+                <strong>{{ .venue }}</strong><br>
+                {{ .location }}
+            </div>
+            <a href="{{ .ticketLink }}" class="btn">Billets</a>
+        </div>
+        {{ end }}
+    </div>
+</section>
+
+
+<section id="contact">
+    <h2>Contact</h2>
+    <div class="contact">
+        <p>Pour toute demande de booking ou d'information :</p>
+        <br/>
+        <p><strong>Email :</strong> {{ .Site.Params.email }}</p>
+        <div class="social-links">
+            {{ range .Site.Data.social }}
+            <a href="{{ .url }}">{{ .name }}</a>
+            {{ end }}
+        </div>
+    </div>
+</section>
+{{ end }}
