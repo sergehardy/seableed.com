@@ -1,0 +1,74 @@
+schema: spec-driven
+
+context: |
+  # Seableed — site officiel du groupe de rock
+
+  ## Stack technique
+  - Hugo (générateur de site statique, Go templates)
+  - CSS vanilla (pas de framework), JS vanilla (pas de bundler)
+  - Font Awesome 6.5.1 via CDN (icônes réseaux sociaux)
+  - Déploiement FTP via lftp (Makefile + .env)
+  - Langue : français
+
+  ## Architecture
+  Site mono-page avec navigation par ancres. Une seule route (`/`).
+  Sections dans l'ordre d'affichage : #accueil → #apropos → #concerts → #contact
+
+  ## Fichiers importants
+  - `config.toml` — configuration Hugo (params: bandName, genre, location, email ; menus)
+  - `layouts/_default/baseof.html` — squelette HTML (head, nav, footer, JS)
+  - `layouts/index.html` — toutes les sections (Go templates)
+  - `layouts/partials/header.html` — navigation responsive
+  - `layouts/partials/footer.html` — pied de page avec copyright
+  - `content/_index.md` — contenu Markdown de la section "À propos"
+  - `data/concerts.yaml` — dates de concerts (liste)
+  - `data/social.yaml` — réseaux sociaux (liste avec icônes Font Awesome)
+  - `data/albums.yaml` — albums (tout commenté, structure connue)
+  - `static/css/style.css` — thème actif (teal #3a5a52 / rust #d4604d)
+  - `static/js/main.js` — hamburger menu + smooth scroll
+
+  ## Schémas des data files
+
+  ### data/concerts.yaml
+  ```yaml
+  - date: string        # ex: "15 Nov 2025"
+    venue: string       # nom de la salle
+    location: string    # ville, pays
+    ticketLink: string  # URL complète ou "#"
+  ```
+
+  ### data/social.yaml
+  ```yaml
+  - name: string        # ex: "Instagram"
+    url: string         # URL complète
+    icon: string        # classe Font Awesome, ex: "fa-brands fa-instagram"
+  ```
+
+  ### data/albums.yaml (désactivé)
+  ```yaml
+  - title: string
+    year: number
+    cover: string       # texte descriptif (pas encore d'images)
+    link: string        # URL ou "#"
+  ```
+
+  ## Points d'attention
+  - Le thème CSS actif est hardcodé dans baseof.html (`style.css`). Les fichiers
+    `style-jaune.css` et `style-vert.css` existent mais ne sont pas chargés.
+  - La section Albums (`#musique`) est entièrement commentée dans index.html et albums.yaml.
+  - La section Vidéos (YouTube embed) est planifiée mais n'existe pas encore.
+  - `data/social.yaml` contient déjà le lien YouTube (@seableed) — utilisable comme
+    point de départ pour la future section vidéos.
+
+  ## Conventions
+  - Commits : Conventional Commits (feat:, fix:, chore:, content:, docs:)
+  - Langue du contenu et des commits : français
+  - Petits commits atomiques
+
+rules:
+  proposal:
+    - Mentionner l'impact sur les data files YAML si la section est pilotée par des données
+    - Préciser si la section est déjà dans le HTML (commentée) ou totalement absente
+  tasks:
+    - Toujours inclure une tâche "vérifier avec make serve" en fin de liste
+    - Nommer les fichiers à modifier/créer explicitement
