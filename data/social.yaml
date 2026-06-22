@@ -1,14 +1,14 @@
 - name: "Instagram"
   url: "https://www.instagram.com/_seableed/"
-
+  icon: "fa-brands fa-instagram"
 - name: "Facebook"
   url: "https://www.facebook.com/profile.php?id=61581730224894"
-
+  icon: "fa-brands fa-facebook"
 - name: "Spotify"
   url: "https://open.spotify.com/playlist/5smzIY9M4I3eUh3e3HXgg3?si=406f81db4ee7434e"
-#
-#- name: "YouTube"
-#  url: "#"
-#
+  icon: "fa-brands fa-spotify"
+- name: "YouTube"
+  url: "https://www.youtube.com/@seableed"
+  icon: "fa-brands fa-youtube"
 #- name: "Bandcamp"
 #  url: "#"

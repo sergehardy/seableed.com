@@ -197,26 +197,55 @@ h2 {
 .contact {
     text-align: center;
 }
-
 .social-links {
     display: flex;
     justify-content: center;
-    gap: 2rem;
+    gap: 1.5rem;
     margin-top: 2rem;
 }
 
 .social-links a {
-    color: #3a5a52;
-    font-size: 1.2rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50px;
+    height: 50px;
+    background: #3a5a52;
+    color: #f5f0e8;
+    font-size: 1.5rem;
+    border-radius: 50%;
     text-decoration: none;
-    transition: color 0.3s;
-    font-weight: 500;
+    transition: all 0.3s;
 }
 
 .social-links a:hover {
-    color: #d4604d;
+    background: #d4604d;
+    transform: translateY(-3px);
+    box-shadow: 0 4px 10px rgba(0,0,0,0.2);
 }
 
+/* Couleurs spécifiques par réseau (optionnel) */
+.social-links a:hover .fa-instagram {
+    background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888);
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.social-links a:hover .fa-facebook {
+    color: #1877f2;
+}
+
+.social-links a:hover .fa-spotify {
+    color: #1db954;
+}
+
+.social-links a:hover .fa-youtube {
+    color: #ff0000;
+}
+
+.social-links a:hover .fa-bandcamp {
+    color: #629aa9;
+}
 footer {
     background: #3a5a52;
     color: #f5f0e8;
