@@ -1,4 +1,12 @@
-- date: "15 Nov 2025"
+- date: "20/06/2026"
+  venue: "Pont des arts"
+  location: "Cesson-Sévigné, France"
+  ticketLink: "https://www.ville-cesson-sevigne.fr/agenda/cesstival-10-jours-danimation-du-17-au-27-juin/"
+- date: "17/06/2026"
+  venue: "Ecole des transmissions"
+  location: "Cesson-Sévigné, France"
+  ticketLink:
+- date: "15/11/2025"
   venue: "Barzouges, Salle Agora"
   location: "Bazouges sous Hédé, France"
   ticketLink: "https://cequinouslie.fr/prog-a-venir/"
