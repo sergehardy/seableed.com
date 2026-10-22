@@ -5,9 +5,13 @@ HUGO := hugo
 PUBLIC := public
 RESOURCES_GEN := resources/_gen
 
+# OVH ne supporte pas FTPS (AUTH TLS refusé) et refuse par intermittence la
+# connexion de données : on désactive SSL et on laisse lftp réessayer.
+LFTP_SET := set ftp:ssl-allow no; set net:max-retries 5; set net:reconnect-interval-base 3; set net:timeout 10
+
 .DEFAULT_GOAL := help
 
-.PHONY: help build serve clean deploy deploy-dry
+.PHONY: help build serve clean deploy deploy-dry ftp
 
 help:
 	@echo "Targets disponibles :"
@@ -16,6 +20,7 @@ help:
 	@echo "  make clean       Supprime public/ et resources/_gen/"
 	@echo "  make deploy      Build + déploiement FTP via lftp (requiert .env)"
 	@echo "  make deploy-dry  Simule le déploiement sans transférer"
+	@echo "  make ftp         Ouvre une session lftp interactive (requiert .env)"
 
 build:
 	$(HUGO) --minify
@@ -28,8 +33,12 @@ clean:
 
 deploy: build
 	@test -n "$(FTP_HOST)" || (echo "Erreur : FTP_HOST manquant dans .env" && exit 1)
-	lftp -c "open -u $(FTP_USER),$(FTP_PASS) $(FTP_HOST); mirror --reverse --delete --verbose $(PUBLIC)/ $(FTP_PATH)"
+	@lftp -c "$(LFTP_SET); open -u $(FTP_USER),$(FTP_PASS) $(FTP_HOST); mirror --reverse --delete --verbose $(PUBLIC)/ $(FTP_PATH)"
 
 deploy-dry: build
 	@test -n "$(FTP_HOST)" || (echo "Erreur : FTP_HOST manquant dans .env" && exit 1)
-	lftp -c "open -u $(FTP_USER),$(FTP_PASS) $(FTP_HOST); mirror --reverse --delete --verbose --dry-run $(PUBLIC)/ $(FTP_PATH)"
+	@lftp -c "$(LFTP_SET); open -u $(FTP_USER),$(FTP_PASS) $(FTP_HOST); mirror --reverse --delete --verbose --dry-run $(PUBLIC)/ $(FTP_PATH)"
+
+ftp:
+	@test -n "$(FTP_HOST)" || (echo "Erreur : FTP_HOST manquant dans .env" && exit 1)
+	@lftp -e "$(LFTP_SET); set cmd:prompt \"lftp> \"; cd $(FTP_PATH)" -u $(FTP_USER),$(FTP_PASS) $(FTP_HOST)
