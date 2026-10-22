@@ -6,7 +6,7 @@ Site statique [Hugo](https://gohugo.io/) du groupe de rock Seableed (Rennes). C'
 
 ### Prérequis
 
-Il faut Hugo (version étendue, testé avec 0.123.7) et `lftp` pour le déploiement. Le fichier `.env` n'est pas versionné : on le crée à partir de `.env.example` avec les identifiants FTP.
+Il faut Hugo (version étendue, testé avec 0.123.7) et `lftp` pour le déploiement. Le fichier `.env` n'est pas versionné : on le crée à partir de `.env.example` avec les identifiants SFTP (les mêmes que dans FileZilla).
 
 ```bash
 cp .env.example .env   # puis renseigner FTP_HOST, FTP_USER, FTP_PASS, FTP_PATH
@@ -17,15 +17,15 @@ cp .env.example .env   # puis renseigner FTP_HOST, FTP_USER, FTP_PASS, FTP_PATH
 ```bash
 make serve       # http://localhost:1313, hot-reload, brouillons inclus
 make build       # génère public/ (minifié)
-make deploy-dry  # simule le déploiement FTP (à lancer avant deploy)
-make deploy      # build + upload FTP (attention : mirror --delete)
-make ftp         # session lftp interactive (cd dans FTP_PATH)
+make deploy-dry  # simule le déploiement SFTP (à lancer avant deploy)
+make deploy      # build + upload SFTP (attention : mirror --delete)
+make ftp         # session SFTP interactive (cd dans FTP_PATH)
 make clean       # supprime public/ et resources/_gen/
 ```
 
 `make deploy` utilise `mirror --reverse --delete` : tout fichier distant absent de `public/` est supprimé. Lance toujours `make deploy-dry` d'abord.
 
-Hébergement OVH : `FTP_PATH` doit valoir `/www/` (la racine FTP est `/`). Le serveur ne supporte pas FTPS (`AUTH TLS` refusé) et refuse par intermittence la connexion de données (`Data socket error`). Le Makefile désactive donc SSL et laisse lftp réessayer (`LFTP_SET`). Un échec isolé n'est pas anormal.
+Hébergement OVH : le déploiement se fait en SFTP (SSH, port 22), comme FileZilla. Le FTP classique d'OVH refuse par intermittence la connexion de données. `FTP_PATH` doit valoir `www/` (chemin relatif au dossier du compte : en SFTP, `/www` n'existe pas).
 
 ## Mises à jour courantes
 

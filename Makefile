@@ -5,9 +5,9 @@ HUGO := hugo
 PUBLIC := public
 RESOURCES_GEN := resources/_gen
 
-# OVH ne supporte pas FTPS (AUTH TLS refusé) et refuse par intermittence la
-# connexion de données : on désactive SSL et on laisse lftp réessayer.
-LFTP_SET := set ftp:ssl-allow no; set net:max-retries 5; set net:reconnect-interval-base 3; set net:timeout 10
+# Déploiement en SFTP (SSH, port 22), comme FileZilla. Le FTP d'OVH refuse
+# par intermittence la connexion de données.
+LFTP_SET := set sftp:auto-confirm yes
 
 .DEFAULT_GOAL := help
 
@@ -33,12 +33,12 @@ clean:
 
 deploy: build
 	@test -n "$(FTP_HOST)" || (echo "Erreur : FTP_HOST manquant dans .env" && exit 1)
-	@lftp -c "$(LFTP_SET); open -u $(FTP_USER),$(FTP_PASS) $(FTP_HOST); mirror --reverse --delete --verbose $(PUBLIC)/ $(FTP_PATH)"
+	@lftp -c "$(LFTP_SET); open -u $(FTP_USER),$(FTP_PASS) sftp://$(FTP_HOST); mirror --reverse --delete --verbose $(PUBLIC)/ $(FTP_PATH)"
 
 deploy-dry: build
 	@test -n "$(FTP_HOST)" || (echo "Erreur : FTP_HOST manquant dans .env" && exit 1)
-	@lftp -c "$(LFTP_SET); open -u $(FTP_USER),$(FTP_PASS) $(FTP_HOST); mirror --reverse --delete --verbose --dry-run $(PUBLIC)/ $(FTP_PATH)"
+	@lftp -c "$(LFTP_SET); open -u $(FTP_USER),$(FTP_PASS) sftp://$(FTP_HOST); mirror --reverse --delete --verbose --dry-run $(PUBLIC)/ $(FTP_PATH)"
 
 ftp:
 	@test -n "$(FTP_HOST)" || (echo "Erreur : FTP_HOST manquant dans .env" && exit 1)
-	@lftp -e "$(LFTP_SET); set cmd:prompt \"lftp> \"; cd $(FTP_PATH)" -u $(FTP_USER),$(FTP_PASS) $(FTP_HOST)
+	@lftp -e "$(LFTP_SET); set cmd:prompt \"lftp> \"; cd $(FTP_PATH)" -u $(FTP_USER),$(FTP_PASS) sftp://$(FTP_HOST)
