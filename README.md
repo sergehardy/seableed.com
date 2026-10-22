@@ -67,6 +67,7 @@ layouts/index.html           Toutes les sections de la page
 layouts/partials/            header.html (nav responsive), footer.html
 static/css/style.css         Thème actif
 static/js/main.js            Menu hamburger + smooth scroll
+static/.htaccess             Redirection HTTPS (copié dans public/ par Hugo)
 static/images/hero-band.jpg  Photo du groupe
 openspec/                    Specs et configuration OpenSpec
 ```

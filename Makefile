@@ -33,11 +33,11 @@ clean:
 
 deploy: build
 	@test -n "$(FTP_HOST)" || (echo "Erreur : FTP_HOST manquant dans .env" && exit 1)
-	@lftp -c "$(LFTP_SET); open -u $(FTP_USER),$(FTP_PASS) sftp://$(FTP_HOST); mirror --reverse --delete --verbose $(PUBLIC)/ $(FTP_PATH)"
+	@lftp -c "$(LFTP_SET); open -u $(FTP_USER),$(FTP_PASS) sftp://$(FTP_HOST); mirror --reverse --delete --exclude __hidden/ --verbose $(PUBLIC)/ $(FTP_PATH)"
 
 deploy-dry: build
 	@test -n "$(FTP_HOST)" || (echo "Erreur : FTP_HOST manquant dans .env" && exit 1)
-	@lftp -c "$(LFTP_SET); open -u $(FTP_USER),$(FTP_PASS) sftp://$(FTP_HOST); mirror --reverse --delete --verbose --dry-run $(PUBLIC)/ $(FTP_PATH)"
+	@lftp -c "$(LFTP_SET); open -u $(FTP_USER),$(FTP_PASS) sftp://$(FTP_HOST); mirror --reverse --delete --exclude __hidden/ --verbose --dry-run $(PUBLIC)/ $(FTP_PATH)"
 
 ftp:
 	@test -n "$(FTP_HOST)" || (echo "Erreur : FTP_HOST manquant dans .env" && exit 1)
