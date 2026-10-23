@@ -55,9 +55,9 @@ nav a:hover {
 }
 
 .hero {
-    background: linear-gradient(rgba(58, 90, 82, 0.3), rgba(44, 62, 58, 0.5)), url('../images/hero-band.jpg');
+    background: linear-gradient(rgba(58, 90, 82, 0.3), rgba(44, 62, 58, 0.5)), url('../images/hero-band-2026.jpeg');
     background-size: cover;
-    background-position: center;
+    background-position: center top;
     color: #fff;
     text-align: center;
     padding: 8rem 2rem;
