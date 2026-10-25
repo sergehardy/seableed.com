@@ -1,0 +1,13 @@
+{{- /* Images Markdown : si le fichier est dans le dossier de l'article, Hugo le réduit (1200 px max, WebP)
+       et seule la version réduite est publiée ; sinon l'image est affichée telle quelle. */ -}}
+{{- $img := .Page.Resources.Get .Destination -}}
+{{- if and $img (eq $img.ResourceType "image") -}}
+    {{- $web := cond (gt $img.Width 1200) ($img.Resize "1200x webp q85") ($img.Process "webp q85") -}}
+    {{- if .Title -}}
+    <figure><img src="{{ $web.RelPermalink }}" width="{{ $web.Width }}" height="{{ $web.Height }}" alt="{{ .Text }}" loading="lazy"><figcaption>{{ .Title }}</figcaption></figure>
+    {{- else -}}
+    <img src="{{ $web.RelPermalink }}" width="{{ $web.Width }}" height="{{ $web.Height }}" alt="{{ .Text }}" loading="lazy">
+    {{- end -}}
+{{- else -}}
+    <img src="{{ .Destination | safeURL }}" alt="{{ .Text }}" loading="lazy">
+{{- end -}}
