@@ -8,7 +8,7 @@
 ## 2. Page /radio/
 
 - [x] 2.1 Créer `content/radio.md` (`title: "Radio"`, `type: radio`) et `layouts/radio/single.html` (titre, intro, iframe Spotify lazy, lien de repli) et vérifier que `public/radio/index.html` contient l'iframe
-- [ ] 2.2 Ajouter dans `static/css/style.css` les styles de la page Radio (carte, iframe pleine largeur, responsive) et vérifier le rendu desktop et mobile
+- [x] 2.2 Ajouter dans `static/css/style.css` les styles de la page Radio (carte, iframe pleine largeur, responsive) et vérifier le rendu desktop et mobile
 
 ## 3. Navigation
 
@@ -17,4 +17,4 @@
 
 ## 4. Vérification finale
 
-- [ ] 4.1 Vérifier avec `make serve` : lecteur fonctionnel, lien de repli, accueil sans iframe Spotify, rendu mobile
+- [x] 4.1 Vérifier avec `make serve` : lecteur fonctionnel, lien de repli, accueil sans iframe Spotify, rendu mobile
