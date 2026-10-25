@@ -97,6 +97,7 @@ Toujours lancer `make deploy-dry` avant `make deploy`.
 
 Articles en Markdown dans `content/blog/` (liste paginée, 5 par page via `paginate` dans `config.toml`).
 Le dernier article publié s'affiche aussi sur l'accueil (section `#actualites`, masquée sans article).
+Article avec images = dossier `content/blog/<nom>/index.md` + photos (rendu `layouts/_default/_markup/render-image.html` : 1200 px max, WebP ; originaux non publiés via `cascade.build.publishResources: false` dans `content/blog/_index.md`). Vidéo : shortcode `{{< youtube ID >}}` (nocookie). HTML brut non rendu. Guide complet : README « Rédiger un article ».
 Front matter : `title`, `date`, `summary` (optionnel, sinon résumé automatique), `draft: true` pour ne pas publier.
 
 ## Schémas des data files

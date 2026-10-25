@@ -115,7 +115,7 @@ Les vidéos sont intégrées via `youtube-nocookie.com`, chargées en différé.
 
 ### Publier un article de blog
 
-Créer un fichier Markdown dans `content/blog/` :
+La marche à suivre complète (photos, légendes, vidéos YouTube) est dans « Rédiger un article » ci-dessous. Version courte, pour un article sans image : créer un fichier Markdown dans `content/blog/` :
 
 ```markdown
 ---
@@ -129,6 +129,49 @@ Texte de l'article en Markdown.
 ```
 
 La liste `/blog/` est paginée par 5 (`paginate` dans `config.toml`). Un article daté dans le futur n'est pas publié. Le dernier article publié (date la plus récente) s'affiche aussi sur l'accueil, dans la section « Actualités » ; elle disparaît s'il n'y a aucun article publié.
+
+### Rédiger un article (photos, vidéos YouTube)
+
+**1. Créer l'article.** Un article avec des images est un *dossier* (un « bundle » Hugo) qui contient `index.md` et ses photos :
+
+```bash
+hugo new content blog/mon-article     # crée content/blog/mon-article/index.md (brouillon)
+```
+
+Copier ensuite les photos dans `content/blog/mon-article/` (JPG ou PNG, tailles d'origine acceptées). Pour ajouter des images à un article déjà écrit en fichier seul (`content/blog/concert.md`), le déplacer : `content/blog/concert/index.md`.
+
+**2. Écrire le Markdown** dans `index.md`, sous le front matter :
+
+````markdown
+---
+title: "Concert à Cesson"
+date: 2026-07-01
+summary: "Une phrase pour la liste et l'accueil."
+draft: false        # true : brouillon, non publié
+---
+
+Texte du paragraphe. **Gras**, *italique*, [un lien](https://www.youtube.com/@seableed).
+
+## Un titre de partie
+
+- une liste
+- à puces
+
+![Description de la photo](photo-scene.jpg)
+
+![Avec légende](photo-groupe.jpg "Légende affichée sous la photo")
+
+{{< youtube vudTL8M3hqk >}}
+````
+
+- **Photos** : `![description](nom-du-fichier.jpg)`, le fichier étant dans le même dossier que `index.md`. Le texte entre crochets est la description (accessibilité) ; un texte entre guillemets après le nom devient la légende. Hugo réduit chaque photo à 1200 px de large maximum et la convertit en WebP : seules ces versions réduites sont publiées, jamais les originaux.
+- **Vidéo YouTube** : `{{< youtube ID >}}`, où l'ID est la valeur après `v=` dans l'adresse de la vidéo (par exemple `vudTL8M3hqk` pour `https://www.youtube.com/watch?v=vudTL8M3hqk`). La vidéo est intégrée via `youtube-nocookie.com`. Pour démarrer à un instant : `{{< youtube id="vudTL8M3hqk" start="30" >}}` (en secondes).
+- **Pas de HTML brut** : une balise `<iframe>` ou `<img>` écrite à la main est ignorée sans message. Utiliser le Markdown et le shortcode ci-dessus.
+- **Playlist ou chaîne** : pas d'embed de playlist ; mettre un lien Markdown vers la playlist.
+
+**3. Contrôler** avec `make serve DEBUG=true` (les brouillons sont visibles), puis passer `draft: false`. L'article le plus récent apparaît aussi sur l'accueil (section « Actualités »). Un article daté dans le futur n'est publié qu'à sa date.
+
+**4. Publier** : `make check`, puis `make deploy-dry ENV=preprod` / `make deploy ENV=preprod`, puis la production (voir « Préproduction »). `make check` échoue si un original (jpg, png) se retrouve dans `public/`.
 
 ### Changer les photos de la pellicule
 
