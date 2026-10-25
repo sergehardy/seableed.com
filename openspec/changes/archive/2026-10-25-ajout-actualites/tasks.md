@@ -4,7 +4,7 @@
 
 - [x] 1.1 Ajouter `<section id="actualites">` entre `#apropos` et `#concerts` dans `layouts/index.html` (dernier article du blog : date, titre, résumé, bouton « Lire l'article », lien « Tous les articles » vers `/blog/`) avec `{{ with }}` pour la masquer sans article, et vérifier avec `hugo --minify` que `public/index.html` contient la section avec l'article le plus récent
 - [x] 1.2 Vérifier avec les articles du dépôt que les brouillons ne sont pas choisis (`make build`) et que la section disparaît si aucun article n'est publié (test dans une copie temporaire sans articles)
-- [ ] 1.3 Ajuster les styles dans `static/css/style.css` si besoin (espacement, lien « Tous les articles ») et vérifier le rendu desktop et mobile
+- [x] 1.3 Ajuster les styles dans `static/css/style.css` si besoin (espacement, lien « Tous les articles ») et vérifier le rendu desktop et mobile
 
 ## 2. Documentation et specs
 
@@ -13,4 +13,4 @@
 
 ## 3. Vérification finale
 
-- [ ] 3.1 Vérifier avec `make serve` et `make serve DEBUG=true` : section présente entre À propos et Concerts, bon article, liens fonctionnels, rendu mobile, puis `make check` sans erreur
+- [x] 3.1 Vérifier avec `make serve` et `make serve DEBUG=true` : section présente entre À propos et Concerts, bon article, liens fonctionnels, rendu mobile, puis `make check` sans erreur
