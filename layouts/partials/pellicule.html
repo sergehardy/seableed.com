@@ -1,0 +1,13 @@
+{{ $photos := slice }}
+{{ range resources.Match "pellicule/*" }}
+    {{ if eq .ResourceType "image" }}{{ $photos = $photos | append . }}{{ end }}
+{{ end }}
+{{ with $photos }}
+<div class="pellicule" role="region" aria-label="Photos du groupe" tabindex="0">
+    {{ range . }}
+    {{ $thumb := .Fill "400x300 Center webp q80" }}
+    {{ $alt := .Name | path.Base | replaceRE "\\.[^.]+$" "" | replaceRE "^[0-9]+[-_]" "" | replaceRE "[-_]+" " " }}
+    <img src="{{ $thumb.RelPermalink }}" width="{{ $thumb.Width }}" height="{{ $thumb.Height }}" alt="{{ $alt }}" loading="lazy">
+    {{ end }}
+</div>
+{{ end }}

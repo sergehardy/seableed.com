@@ -591,3 +591,34 @@ footer {
         padding: 1.25rem;
     }
 }
+
+/* Pellicule de photos */
+.pellicule {
+    display: flex;
+    gap: 0.75rem;
+    max-width: 1136px;
+    width: calc(100% - 4rem);
+    margin: 1.5rem auto 0;
+    padding-bottom: 0.5rem;
+    overflow-x: auto;
+    scroll-snap-type: x mandatory;
+}
+
+.pellicule img {
+    flex: 0 0 auto;
+    height: 180px;
+    width: auto;
+    border-radius: 6px;
+    scroll-snap-align: start;
+    box-shadow: 0 2px 10px rgba(58, 90, 82, 0.15);
+}
+
+@media (max-width: 768px) {
+    .pellicule {
+        width: calc(100% - 3rem);
+    }
+
+    .pellicule img {
+        height: 140px;
+    }
+}
