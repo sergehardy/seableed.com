@@ -44,6 +44,19 @@ context: |
     icon: string        # classe Font Awesome, ex: "fa-brands fa-instagram"
   ```
 
+  ### data/videos.yaml
+  ```yaml
+  channel:
+    name: string
+    url: string
+  playlists:
+    - title: string
+      url: string
+      videos:
+        - title: string
+          youtubeId: string   # valeur après "v=" dans l'URL
+  ```
+
   ### data/albums.yaml (désactivé)
   ```yaml
   - title: string
@@ -56,7 +69,7 @@ context: |
   - Le thème CSS actif est hardcodé dans baseof.html (`style.css`). Les fichiers
     `style-jaune.css` et `style-vert.css` existent mais ne sont pas chargés.
   - La section Albums (`#musique`) est entièrement commentée dans index.html et albums.yaml.
-  - La section Vidéos (YouTube embed) est planifiée mais n'existe pas encore.
+  - La page Vidéos (`/videos/`, `layouts/videos/single.html`) est une page Hugo dédiée pilotée par `data/videos.yaml` (embeds youtube-nocookie, lazy).
   - `data/social.yaml` contient déjà le lien YouTube (@seableed) — utilisable comme
     point de départ pour la future section vidéos.
 

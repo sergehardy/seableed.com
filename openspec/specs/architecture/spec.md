@@ -3,7 +3,7 @@
 ## Vue d'ensemble
 
 Seableed.com est un site statique généré par Hugo, déployé via FTP.
-C'est un site mono-page avec navigation par ancres (pas de routage multi-pages).
+La page d'accueil est mono-page avec navigation par ancres ; une page dédiée `/videos/` (layout `layouts/videos/single.html`) complète le site.
 
 ## Flux de génération
 

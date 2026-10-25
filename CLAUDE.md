@@ -43,7 +43,7 @@ static/
 | `#concerts`  | Concerts     | `data/concerts.yaml`     | actif     |
 | `#contact`   | Contact      | `config.toml` + `data/social.yaml` | actif |
 | `#musique`   | Albums       | `data/albums.yaml`       | commenté  |
-| `#videos`    | Vidéos       | `data/videos.yaml`       | planifié  |
+| `/videos/`   | Page Vidéos  | `data/videos.yaml`       | actif (page dédiée) |
 
 ## Schémas des data files
 
@@ -58,6 +58,17 @@ static/
 - name: string        # ex: "Instagram"
   url: string         # URL complète
   icon: string        # classe Font Awesome, ex: "fa-brands fa-instagram"
+
+# data/videos.yaml
+channel:
+  name: string        # libellé du bouton
+  url: string         # URL de la chaîne
+playlists:
+  - title: string
+    url: string       # URL de la playlist
+    videos:
+      - title: string
+        youtubeId: string  # valeur après "v=" dans l'URL
 
 # data/albums.yaml (désactivé — tout commenté)
 - title: string
