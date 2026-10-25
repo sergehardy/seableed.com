@@ -1,0 +1,13 @@
+{{/* Assemble une bande unique de tuiles (photos répétées), séparées par un trait blanc.
+     Paramètres : photos, largeur (tuile + trait), hauteur, trait, nombre de tuiles. */}}
+{{ $photos := .photos }}
+{{ $tuile := sub .largeur .trait }}
+{{ $canvas := (index $photos 0).Fill (printf "%dx%d Center webp q80" (mul .largeur .nombre) .hauteur) }}
+{{ $canvas = $canvas.Filter (images.Brightness 100) }}
+{{ range seq .nombre }}
+    {{ $i := sub . 1 }}
+    {{ $photo := index $photos (mod $i (len $photos)) }}
+    {{ $img := ($photo.Fill (printf "%dx%d Center" $tuile $.hauteur)).Filter (images.Saturation -90) }}
+    {{ $canvas = $canvas.Filter (images.Overlay $img (mul $i $.largeur) 0) }}
+{{ end }}
+{{ return $canvas }}
