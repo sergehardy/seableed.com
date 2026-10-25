@@ -23,4 +23,4 @@
 
 ## 5. Vérification finale
 
-- [ ] 5.1 Faire un déploiement réel de préprod (`make deploy-dry ENV=preprod` relu avec l'utilisateur, puis `make deploy ENV=preprod`) et vérifier : navigation complète sous `/preprod/`, `curl -I` montre `X-Robots-Tag`, la production reste inchangée, puis `make deploy-dry` de production relu pour confirmer que `preprod/` est exclu
+- [x] 5.1 Faire un déploiement réel de préprod (`make deploy-dry ENV=preprod` relu avec l'utilisateur, puis `make deploy ENV=preprod`) et vérifier : navigation complète sous `/preprod/`, `curl -I` montre `X-Robots-Tag`, la production reste inchangée, puis `make deploy-dry` de production relu pour confirmer que `preprod/` est exclu
