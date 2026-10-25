@@ -513,18 +513,35 @@ footer {
     font-size: 0.9rem;
 }
 
-.post-card h2 {
+#actualites .post-card {
+    margin-bottom: 1rem;
+}
+
+.post-card h2,
+.post-card h3 {
     margin: 0.25rem 0 0.75rem;
     text-align: left;
     font-size: 1.6rem;
 }
 
-.post-card h2 a {
+.all-posts {
+    text-align: right;
+}
+
+.all-posts a {
+    color: #d4604d;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.post-card h2 a,
+.post-card h3 a {
     color: #3a5a52;
     text-decoration: none;
 }
 
-.post-card h2 a:hover {
+.post-card h2 a:hover,
+.post-card h3 a:hover {
     color: #d4604d;
 }
 

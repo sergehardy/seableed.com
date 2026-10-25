@@ -26,6 +26,21 @@
     </div>
 </section>
 
+{{ with first 1 (where .Site.RegularPages "Section" "blog").ByDate.Reverse }}
+<section id="actualites">
+    <h2>Actualités</h2>
+    {{ range . }}
+    <article class="post-card">
+        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "02/01/2006" }}</time>
+        <h3><a href="{{ .RelPermalink }}">{{ .Title }}</a></h3>
+        <p>{{ with .Params.summary }}{{ . }}{{ else }}{{ .Summary | plainify }}{{ end }}</p>
+        <a href="{{ .RelPermalink }}" class="btn">Lire l'article</a>
+    </article>
+    {{ end }}
+    <p class="all-posts"><a href="{{ "blog/" | relURL }}">Tous les articles &raquo;</a></p>
+</section>
+{{ end }}
+
 <section id="concerts">
     <h2>Prochains Concerts</h2>
     <div class="concerts">
