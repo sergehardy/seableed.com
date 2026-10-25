@@ -11,6 +11,17 @@ RESOURCES_GEN := resources/_gen
 # Environnement : make <cible> ENV=prod|preprod (prod par défaut)
 ENV ?= prod
 
+# make serve LAN=true : écoute sur toutes les interfaces pour tester depuis un mobile en wifi
+LAN ?= false
+ifeq ($(LAN),true)
+  LAN_IP := $(shell hostname -I | awk '{print $$1}')
+  SERVE_NET := --bind 0.0.0.0 --baseURL http://$(LAN_IP):1313
+else ifeq ($(LAN),false)
+  SERVE_NET :=
+else
+  $(error LAN doit valoir "true" ou "false" (reçu : "$(LAN)"))
+endif
+
 # Mode de make serve : DEBUG=true affiche aussi les brouillons (draft: true) et les articles à date future
 DEBUG ?= false
 ifeq ($(DEBUG),true)
@@ -56,7 +67,7 @@ endif
 
 help:
 	@echo "Targets disponibles (ENV=prod|preprod, prod par défaut) :"
-	@echo "  make serve       Serveur local http://localhost:1313 (DEBUG=true : brouillons et dates futures visibles)"
+	@echo "  make serve       Serveur local http://localhost:1313 (DEBUG=true : brouillons ; LAN=true : accessible en wifi)"
 	@echo "  make build       Construit le site dans public/ (ex. make build ENV=preprod)"
 	@echo "  make check       Build + vérifie que public/ ne contient que le site"
 	@echo "  make clean       Supprime public/ et resources/_gen/"
@@ -89,7 +100,10 @@ endif
 	@echo "Contenu de $(PUBLIC)/ :"; find $(PUBLIC) -type f | sort | sed 's/^/  /'
 
 serve:
-	$(HUGO) server $(SERVE_FLAGS)
+ifeq ($(LAN),true)
+	@echo "Depuis le mobile (même wifi) : http://$(LAN_IP):1313/"
+endif
+	$(HUGO) server $(SERVE_FLAGS) $(SERVE_NET)
 
 clean:
 	rm -rf $(PUBLIC) $(RESOURCES_GEN)

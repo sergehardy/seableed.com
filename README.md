@@ -17,6 +17,7 @@ cp .env.example .env   # puis renseigner FTP_HOST, FTP_USER, FTP_PASS, FTP_PATH 
 ```bash
 make serve       # http://localhost:1313, hot-reload, comme en production (sans brouillons)
 make serve DEBUG=true   # idem avec les brouillons (draft: true) et les articles à date future
+make serve LAN=true     # accessible depuis un mobile du même wifi (affiche l'adresse http://IP:1313/)
 make build       # génère public/ (minifié, supprime les anciens fichiers)
 make check       # build + vérifie que public/ ne contient que le site
 make deploy-dry  # simule le déploiement SFTP (à lancer avant deploy)
