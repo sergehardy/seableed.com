@@ -1,0 +1,16 @@
+{{ define "main" }}
+{{ $radio := .Site.Data.radio }}
+<section class="radio-hero">
+    <h1>{{ $radio.title }}</h1>
+    <p>{{ $radio.intro }}</p>
+</section>
+
+<section class="radio">
+    <div class="radio-player">
+        <iframe src="https://open.spotify.com/embed/playlist/{{ $radio.playlist.id }}" title="{{ $radio.title }}" loading="lazy" allow="encrypted-media; clipboard-write; fullscreen"></iframe>
+    </div>
+    <p class="radio-link">
+        <a href="{{ $radio.playlist.url }}" class="btn" target="_blank" rel="noopener"><i class="fa-brands fa-spotify"></i> Ouvrir sur Spotify</a>
+    </p>
+</section>
+{{ end }}

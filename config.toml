@@ -31,6 +31,10 @@ title = 'Seableed'
     url = "/videos/"
     weight = 5
   [[menu.main]]
+    name = "Radio"
+    url = "/radio/"
+    weight = 6
+  [[menu.main]]
     name = "Contact"
     url = "/#contact"
-    weight = 6
+    weight = 8

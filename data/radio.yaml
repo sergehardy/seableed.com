@@ -1,0 +1,7 @@
+# Page /radio/ : playlist Spotify intégrée.
+# playlist.id : valeur après /playlist/ dans l'URL Spotify (sans le "?si=...").
+title: "Radio Seableed"
+intro: "Notre sélection du moment."
+playlist:
+  id: "6kRtfPBIWbCJ9jnBLMP673"
+  url: "https://open.spotify.com/playlist/6kRtfPBIWbCJ9jnBLMP673"
