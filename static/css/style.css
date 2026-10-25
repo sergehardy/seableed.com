@@ -194,6 +194,25 @@ h2 {
 
 .about p {
     color: #2c3e3a;
+    margin-bottom: 1rem;
+}
+
+.about h3 {
+    color: #3a5a52;
+    margin: 1.5rem 0 0.5rem;
+}
+
+.about h3:first-child {
+    margin-top: 0;
+}
+
+.about ul {
+    padding-left: 1.5rem;
+    margin: 0.5rem 0 1.5rem;
+}
+
+.about li {
+    margin-bottom: 0.4rem;
 }
 
 .contact {
