@@ -4,6 +4,14 @@ title = 'Seableed'
 
 paginate = 5
 
+# Pas de taxonomies (categories/tags) : rien à publier
+disableKinds = ["taxonomy", "term"]
+
+# RSS uniquement pour le blog
+[outputs]
+  home = ["HTML"]
+  section = ["HTML", "RSS"]
+
 [params]
   description = "Site officiel du groupe Seableed"
   bandName = "Seableed"
