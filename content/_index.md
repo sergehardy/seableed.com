@@ -11,13 +11,16 @@ et pop mêlant guitare et claviers.
 
 ### Rock 
 
-indé, grunge, new-wave, brit-pop, mais aussi "bon vieux rock", 
-rien n'échappe à ces généralistes loin d'être des débutants. 
+Indé, grunge, new-wave, brit-pop, mais aussi "bon vieux rock", rien n'échappe à ces généralistes loin d'être des débutants.
+Ce projet est ainsi la rencontre musicale de bandes de copains, sans plaisir coupable !"
 
-- Sébastien et Jean-Marie sont des amis de longue date, ayant joué et composé ensemble et avec d'autres formations.
-- Sandra et Pierre, qui ont déjà joué ensemble dans d'autres formations, rejoignent le groupe début 2026 
+- Jean-Marie : batterie, choeurs
+- Pierre : lead guitar, choeurs
+- Sandra : basse, choeurs
+- Serge: chant, guitare rythmique, claviers
+
+
 
 
 ### Déjà sur scène !
 
-Ce projet est ainsi la renaissance musicale d'une bande de copains, sans plaisir coupable !"
