@@ -5,6 +5,8 @@
 Seableed.com est un site statique généré par Hugo, déployé via FTP.
 La page d'accueil est mono-page avec navigation par ancres ; une page dédiée `/videos/` (layout `layouts/videos/single.html`) complète le site.
 
+La page d'accueil affiche, sous le hero, une pellicule de miniatures générées par Hugo à partir de `assets/pellicule/`.
+
 ## Flux de génération
 
 ```

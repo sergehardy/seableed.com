@@ -5,6 +5,10 @@
 Première section visible de la page. Affiche le nom du groupe, le genre musical
 et la ville. Point d'entrée visuel du site.
 
+## Pellicule
+
+Juste sous le hero, la pellicule de photos (`layouts/partials/pellicule.html`, spec `pellicule`) s'affiche avant la section À propos.
+
 ## Fichiers concernés
 
 - `layouts/index.html` — template de la section (`<section class="hero" id="accueil">`)

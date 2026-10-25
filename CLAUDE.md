@@ -47,6 +47,12 @@ static/
 | `#musique`   | Albums       | `data/albums.yaml`       | commenté  |
 | `/videos/`   | Page Vidéos  | `data/videos.yaml`       | actif (page dédiée) |
 
+## Pellicule de photos
+
+Photos sources dans `assets/pellicule/` (≤ 2000 px de large, nommées `01-…`, `02-…` pour fixer l'ordre).
+Hugo génère les miniatures WebP 400×300 au build (`layouts/partials/pellicule.html`), affichées sous le hero.
+Le texte alternatif est déduit du nom de fichier. Sans photo, la pellicule n'apparaît pas.
+
 ## Blog
 
 Articles en Markdown dans `content/blog/` (liste paginée, 5 par page via `paginate` dans `config.toml`).

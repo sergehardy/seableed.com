@@ -74,6 +74,10 @@ context: |
     link: string        # URL ou "#"
   ```
 
+  ## Pellicule de photos
+  Photos dans `assets/pellicule/` (nommage `01-…` pour l'ordre) ; miniatures WebP 400x300 générées
+  par Hugo (`layouts/partials/pellicule.html`), bandeau sous le hero ; absent s'il n'y a aucune photo.
+
   ## Blog
   Articles Markdown dans `content/blog/` (front matter : title, date, summary, draft),
   liste paginée `/blog/` (`paginate = 5` dans config.toml), layouts `layouts/blog/list.html` et `single.html`.
