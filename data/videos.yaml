@@ -12,3 +12,12 @@ playlists:
         youtubeId: "vudTL8M3hqk"
       - title: "Lonely boy"
         youtubeId: "f5XM0AnTaKU"
+
+  - title: "Bar'zouges 2025"
+    url: "https://www.youtube.com/playlist?list=PLF4EOYR9fg2yHteL7U3CH2Z9x6kOGO0FH"
+    videos:
+      - title: "De do do do de da da da"
+        youtubeId: "ZqLP7C34FF4"
+      - title: "Island in the sun"
+        youtubeId: "lChkNRwVL5c"
+

@@ -1,6 +1,6 @@
 ---
 title: "Bienvenue sur le blog"
-date: 2026-10-25
+date: 2025-10-01
 summary: "Premier article : ici, le groupe partagera ses nouvelles."
 ---
 
