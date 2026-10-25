@@ -64,13 +64,6 @@
         <p>Pour toute demande de booking ou d'information :</p>
         <br/>
         <p><strong>Email :</strong> {{ .Site.Params.email }}</p>
-        <div class="social-links">
-            {{ range .Site.Data.social }}
-            <a href="{{ .url }}" title="{{ .name }}" target="_blank" rel="noopener">
-                <i class="{{ .icon }}"></i>
-            </a>
-            {{ end }}
-        </div>
     </div>
 </section>
 {{ end }}

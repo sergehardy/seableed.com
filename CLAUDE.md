@@ -29,7 +29,7 @@ layouts/
   blog/                  list.html (liste paginée) et single.html (article)
   partials/
     header.html          Navigation responsive
-    footer.html          Pied de page
+    footer.html          Pied de page (icônes réseaux de data/social.yaml, collé en bas si contenu court)
     pellicule.html       Bande de photos (picture bureau/mobile)
     pellicule-bande.html Assemble une bande unique à partir des photos
 
@@ -62,7 +62,7 @@ themes-alternatifs/      Anciennes variantes CSS (non chargées, non publiées)
 | `#apropos`   | À propos     | `content/_index.md`      | actif     |
 | `#actualites`| Actualités   | dernier article de `content/blog/` | actif |
 | `#concerts`  | Concerts     | `data/concerts.yaml`     | actif     |
-| `#contact`   | Contact      | `config.toml` + `data/social.yaml` | actif |
+| `#contact`   | Contact      | `config.toml` (email) | actif |
 | `/radio/`    | Page Radio   | `data/radio.yaml`        | actif (page dédiée) |
 | `/blog/`     | Blog         | `content/blog/*.md`      | actif (page dédiée) |
 | `#musique`   | Albums       | `data/albums.yaml`       | commenté  |

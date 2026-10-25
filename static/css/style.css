@@ -9,6 +9,15 @@ body {
     line-height: 1.6;
     color: #2c3e3a;
     background: #f5f0e8;
+    /* Pied de page collé en bas de la fenêtre si le contenu est court */
+    min-height: 100vh;
+    min-height: 100dvh;
+    display: flex;
+    flex-direction: column;
+}
+
+main {
+    flex: 1 0 auto;
 }
 
 header {
@@ -264,6 +273,18 @@ h2 {
     justify-content: center;
     gap: 1.5rem;
     margin-top: 2rem;
+}
+
+footer .social-links {
+    gap: 1rem;
+    margin: 0 0 1.25rem;
+}
+
+footer .social-links a {
+    width: 42px;
+    height: 42px;
+    font-size: 1.25rem;
+    background: rgba(245, 240, 232, 0.15);
 }
 
 .social-links a {

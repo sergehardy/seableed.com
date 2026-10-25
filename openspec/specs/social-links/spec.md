@@ -3,14 +3,14 @@
 ## Description
 
 Les liens vers les réseaux sociaux sont définis dans `data/social.yaml` et
-affichés dans la section Contact. Ils utilisent Font Awesome pour les icônes.
+affichés dans le pied de page de toutes les pages. Ils utilisent Font Awesome pour les icônes.
 
 ## Fichiers concernés
 
 - `data/social.yaml` — liste des réseaux
-- `layouts/index.html` — rendu dans la section `#contact`
+- `layouts/partials/footer.html` — rendu dans le pied de page
 - `layouts/_default/baseof.html` — chargement de Font Awesome (CDN)
-- `static/css/style.css` — styles `.social-links`, `.social-links a`
+- `static/css/style.css` — styles `.social-links`, `.social-links a`, `footer .social-links`
 
 ## Schéma YAML
 

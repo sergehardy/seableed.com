@@ -36,7 +36,7 @@ public/              ← site généré (non versionné)
 | 1     | `#accueil`  | Hero         | `config.toml` params     |
 | 2     | `#apropos`  | À propos     | `content/_index.md`      |
 | 3     | `#concerts` | Concerts     | `data/concerts.yaml`     |
-| 4     | `#contact`  | Contact      | `config.toml` + `data/social.yaml` |
+| 4     | `#contact`  | Contact      | `config.toml` (email) |
 
 ## Sections désactivées / planifiées
 

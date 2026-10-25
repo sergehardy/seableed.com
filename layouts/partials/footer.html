@@ -1,3 +1,10 @@
 <footer>
+    <div class="social-links">
+        {{ range .Site.Data.social }}
+        <a href="{{ .url }}" title="{{ .name }}" aria-label="{{ .name }}" target="_blank" rel="noopener">
+            <i class="{{ .icon }}"></i>
+        </a>
+        {{ end }}
+    </div>
     <p>&copy; {{ now.Year }} {{ .Site.Params.bandName }}. Tous droits réservés.</p>
 </footer>
