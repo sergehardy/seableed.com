@@ -3,7 +3,7 @@
 ## Description
 
 Navigation sticky en haut de page, responsive avec menu hamburger sur mobile.
-Les liens pointent vers des ancres de la page d'accueil (`/#section`), sauf « Vidéos » qui pointe vers la page dédiée `/videos/`.
+Les liens pointent vers des ancres de la page d'accueil (`/#section`), sauf « Vidéos » et « Radio » qui pointent vers les pages dédiées `/videos/` et `/radio/`.
 
 ## Fichiers concernés
 
@@ -32,9 +32,13 @@ Les liens pointent vers des ancres de la page d'accueil (`/#section`), sauf « V
   url = "/videos/"
   weight = 5
 [[menu.main]]
+  name = "Radio"
+  url = "/radio/"
+  weight = 6
+[[menu.main]]
   name = "Contact"
   url = "/#contact"
-  weight = 6
+  weight = 8
 ```
 
 Le menu "Musique" (`/#musique`, weight 2) est commenté dans config.toml.

@@ -42,6 +42,7 @@ static/
 | `#apropos`   | À propos     | `content/_index.md`      | actif     |
 | `#concerts`  | Concerts     | `data/concerts.yaml`     | actif     |
 | `#contact`   | Contact      | `config.toml` + `data/social.yaml` | actif |
+| `/radio/`    | Page Radio   | `data/radio.yaml`        | actif (page dédiée) |
 | `#musique`   | Albums       | `data/albums.yaml`       | commenté  |
 | `/videos/`   | Page Vidéos  | `data/videos.yaml`       | actif (page dédiée) |
 
@@ -69,6 +70,13 @@ playlists:
     videos:
       - title: string
         youtubeId: string  # valeur après "v=" dans l'URL
+
+# data/radio.yaml
+title: string
+intro: string
+playlist:
+  id: string          # valeur après /playlist/ dans l'URL Spotify
+  url: string         # URL de la playlist
 
 # data/albums.yaml (désactivé — tout commenté)
 - title: string

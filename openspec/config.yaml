@@ -57,6 +57,15 @@ context: |
           youtubeId: string   # valeur après "v=" dans l'URL
   ```
 
+  ### data/radio.yaml
+  ```yaml
+  title: string
+  intro: string
+  playlist:
+    id: string          # valeur après /playlist/ dans l'URL Spotify
+    url: string
+  ```
+
   ### data/albums.yaml (désactivé)
   ```yaml
   - title: string
