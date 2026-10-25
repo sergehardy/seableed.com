@@ -1,13 +1,16 @@
-{{/* Assemble une bande unique de tuiles (photos répétées), séparées par un trait blanc.
-     Paramètres : photos, largeur (tuile + trait), hauteur, trait, nombre de tuiles. */}}
+{{/* Assemble une bande unique : une tuile par photo (recadrage intelligent, rééchantillonnage Lanczos),
+     presque noir et blanc avec du contraste, séparées par un trait blanc.
+     Tout le montage se fait en PNG (sans perte) ; la conversion en WebP n'a lieu qu'à la fin.
+     Paramètres : photos, largeur (de la bande), hauteur, trait, nombre de tuiles. */}}
 {{ $photos := .photos }}
-{{ $tuile := sub .largeur .trait }}
-{{ $canvas := (index $photos 0).Fill (printf "%dx%d Center webp q80" (mul .largeur .nombre) .hauteur) }}
+{{ $pas := div .largeur .nombre }}
+{{ $tuile := sub $pas .trait }}
+{{ $canvas := (index $photos 0).Fill (printf "%dx%d Center png Lanczos" (mul $pas .nombre) .hauteur) }}
 {{ $canvas = $canvas.Filter (images.Brightness 100) }}
 {{ range seq .nombre }}
     {{ $i := sub . 1 }}
     {{ $photo := index $photos (mod $i (len $photos)) }}
-    {{ $img := ($photo.Fill (printf "%dx%d Center" $tuile $.hauteur)).Filter (images.Saturation -90) }}
-    {{ $canvas = $canvas.Filter (images.Overlay $img (mul $i $.largeur) 0) }}
+    {{ $img := ($photo.Fill (printf "%dx%d Smart png Lanczos" $tuile $.hauteur)).Filter (images.Saturation -75) (images.Contrast 20) }}
+    {{ $canvas = $canvas.Filter (images.Overlay $img (mul $i $pas) 0) }}
 {{ end }}
-{{ return $canvas }}
+{{ return ($canvas.Process "webp q90") }}

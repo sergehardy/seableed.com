@@ -4,9 +4,9 @@
 {{ end }}
 {{ with $photos }}
 {{ $n := len . }}
-{{ $bureau := partial "pellicule-bande.html" (dict "photos" . "largeur" 96 "hauteur" 112 "trait" 4 "nombre" (mul 2 $n)) }}
+{{ $bureau := partial "pellicule-bande.html" (dict "photos" . "largeur" 2880 "hauteur" 112 "trait" 4 "nombre" $n) }}
 {{ $bureau = resources.Copy "pellicule/bande-bureau.webp" $bureau | fingerprint "md5" }}
-{{ $mobile := partial "pellicule-bande.html" (dict "photos" . "largeur" 60 "hauteur" 80 "trait" 4 "nombre" (int (math.Min 13 (mul 2 $n)))) }}
+{{ $mobile := partial "pellicule-bande.html" (dict "photos" . "largeur" 780 "hauteur" 80 "trait" 4 "nombre" (int (math.Min 6 $n))) }}
 {{ $mobile = resources.Copy "pellicule/bande-mobile.webp" $mobile | fingerprint "md5" }}
 <div class="pellicule" role="img" aria-label="Photos du groupe">
     <picture>

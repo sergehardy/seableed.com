@@ -96,7 +96,7 @@ La pellicule est une **image unique** assemblée par Hugo à partir de `assets/p
 2. Lancer `make serve` et regarder le haut de la page. Si une ancienne bande reste affichée, faire `make clean`.
 3. Lancer `make check`, puis `make deploy-dry` et `make deploy`.
 
-Les photos sont recadrées au centre, passées en presque noir et blanc, répétées deux fois pour remplir la largeur, et séparées par un trait blanc. Une bande bureau et une bande mobile sont générées. Les originaux ne sont pas publiés. Sans aucune photo, la pellicule n'apparaît pas.
+Chaque photo devient une tuile (recadrage intelligent, presque noir et blanc, plus de contraste) séparée des autres par un trait blanc. Plus il y a de photos, plus les tuiles sont étroites : 15 photos conviennent bien. Une bande bureau (toutes les photos) et une bande mobile (les 6 premières) sont générées. Les originaux ne sont pas publiés. Sans aucune photo, la pellicule n'apparaît pas.
 
 ## Structure
 
