@@ -3,7 +3,7 @@
 ## Description
 
 Navigation sticky en haut de page, responsive avec menu hamburger sur mobile.
-Les liens pointent vers des ancres de la page d'accueil (`/#section`).
+Les liens pointent vers des ancres de la page d'accueil (`/#section`), sauf « Vidéos » qui pointe vers la page dédiée `/videos/`.
 
 ## Fichiers concernés
 
@@ -28,9 +28,13 @@ Les liens pointent vers des ancres de la page d'accueil (`/#section`).
   url = "/#apropos"
   weight = 4
 [[menu.main]]
+  name = "Vidéos"
+  url = "/videos/"
+  weight = 5
+[[menu.main]]
   name = "Contact"
   url = "/#contact"
-  weight = 5
+  weight = 6
 ```
 
 Le menu "Musique" (`/#musique`, weight 2) est commenté dans config.toml.
@@ -43,6 +47,7 @@ Le menu "Musique" (`/#musique`, weight 2) est commenté dans config.toml.
   - Toggle via JS sur les classes `.active` de `#mobile-menu` et `#nav-menu`
   - Fermeture automatique au clic sur un lien
 - Smooth scroll pour tous les liens d'ancrage (`a[href^="#"]`)
+- Depuis `/videos/`, les liens `/#section` ramènent à l'accueil sur la section
 
 ## Ajouter un item de menu
 

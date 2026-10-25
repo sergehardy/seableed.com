@@ -8,7 +8,7 @@
 ## 2. Page /videos/
 
 - [x] 2.1 Créer `content/videos.md` (`title: "Vidéos"`) et `layouts/videos/single.html` (bandeau + bouton chaîne, une rubrique par playlist avec lien, grille d'embeds `youtube-nocookie.com`, `loading="lazy"`) et vérifier que `public/videos/index.html` est généré avec les 2 iframes
-- [ ] 2.2 Ajouter dans `static/css/style.css` les styles `.videos-hero`, `.playlist`, `.videos`, `.video`, `.video-embed` (16/9, grille responsive, 1 colonne < 768 px) et vérifier visuellement desktop et mobile
+- [x] 2.2 Ajouter dans `static/css/style.css` les styles `.videos-hero`, `.playlist`, `.videos`, `.video`, `.video-embed` (16/9, grille responsive, 1 colonne < 768 px) et vérifier visuellement desktop et mobile
 
 ## 3. Navigation
 
@@ -18,4 +18,4 @@
 ## 4. Specs et vérification finale
 
 - [x] 4.1 Mettre à jour `openspec/specs/architecture/spec.md` (site plus strictement mono-page) et le tableau des ancres de `CLAUDE.md`
-- [ ] 4.2 Vérifier avec `make serve` : page `/videos/` complète, lecture des deux vidéos, liens chaîne et playlist, rendu mobile, accueil sans iframe
+- [x] 4.2 Vérifier avec `make serve` : page `/videos/` complète, lecture des deux vidéos, liens chaîne et playlist, rendu mobile, accueil sans iframe

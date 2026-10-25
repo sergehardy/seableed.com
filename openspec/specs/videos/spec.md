@@ -1,71 +1,48 @@
-# Spec : Section Vidéos (#videos) — planifiée
+# Spec : Page Vidéos (/videos/)
 
 ## Description
 
-Section pour intégrer des vidéos YouTube du groupe. N'existe pas encore.
-Le compte YouTube est déjà référencé dans `data/social.yaml`.
+Page Hugo dédiée (pas une section de l'accueil) présentant les vidéos YouTube du groupe.
+Page importante : c'est celle utilisée pour démarcher salles et organisateurs.
 
 ## Statut
 
-**Planifié** — rien n'existe dans le code.
+**Actif**
 
-## Compte YouTube
+## Fichiers concernés
 
-```
-URL : https://www.youtube.com/@seableed
-```
+- `data/videos.yaml` — contenu (chaîne, playlists, vidéos)
+- `content/videos.md` — front matter (`title: "Vidéos"`, `type: videos`)
+- `layouts/videos/single.html` — template de la page
+- `static/css/style.css` — styles `.videos-hero`, `.playlist`, `.videos`, `.video`, `.video-embed`
+- `config.toml` — entrée de menu « Vidéos » (`/videos/`, weight 5)
 
-Déjà présent dans `data/social.yaml` comme lien de réseau social.
-
-## Options d'implémentation
-
-### Option A : Data file YAML + embed iframe
+## Schéma de data/videos.yaml
 
 ```yaml
-# data/videos.yaml
-- title: string      # Titre de la vidéo
-  youtubeId: string  # ID YouTube (ex: "dQw4w9WgXcQ")
-  description: string # Description courte (optionnel)
+channel:
+  name: string        # libellé du bouton vers la chaîne
+  url: string         # https://www.youtube.com/@seableed
+playlists:
+  - title: string
+    url: string       # URL de la playlist YouTube
+    videos:
+      - title: string
+        youtubeId: string  # valeur après "v=" dans l'URL
 ```
 
-Template Hugo :
-```html
-<section id="videos">
-    <h2>Nos Vidéos</h2>
-    <div class="videos">
-        {{ range .Site.Data.videos }}
-        <div class="video">
-            <h3>{{ .title }}</h3>
-            <div class="video-embed">
-                <iframe
-                    src="https://www.youtube.com/embed/{{ .youtubeId }}"
-                    allowfullscreen
-                    loading="lazy">
-                </iframe>
-            </div>
-        </div>
-        {{ end }}
-    </div>
-</section>
-```
+Ajouter une vidéo : ajouter `title` + `youtubeId` dans la playlist. Nouvelle playlist : nouveau bloc avec `title`, `url`, `videos`.
 
-### Option B : Lien simple vers la playlist/chaîne
+## Comportement
 
-Sans embed, juste des vignettes cliquables renvoyant vers YouTube.
-Plus simple, pas de consentement cookies tiers à gérer.
+- Le même en-tête, menu et pied de page que l'accueil.
+- Bandeau avec le titre et un bouton vers la chaîne YouTube.
+- Une rubrique par playlist : titre, lien « Voir la playlist », grille de cartes (embed + titre).
+- Embeds via `youtube-nocookie.com`, `loading="lazy"`, ratio 16/9 ; aucune iframe sur l'accueil.
+- Grille `auto-fit, minmax(320px, 1fr)` ; une colonne sous 768 px.
 
-## Considérations
+## Exigences
 
-- **RGPD** : l'embed YouTube dépose des cookies tiers. En France, il faut
-  informer l'utilisateur ou utiliser `youtube-nocookie.com` comme domaine d'embed.
-- **Performance** : les iframes YouTube peuvent alourdir le chargement initial.
-  L'attribut `loading="lazy"` est recommandé.
-- **Navigation** : ajouter `#videos` dans `config.toml` et l'ordre dans `index.html`
-  (logiquement entre `#apropos` et `#concerts`, ou après `#contact`).
-
-## Fichiers à créer lors de l'implémentation
-
-- `data/videos.yaml`
-- Bloc `<section id="videos">` dans `layouts/index.html`
-- Entrée `[[menu.main]]` dans `config.toml`
-- Styles `.videos`, `.video`, `.video-embed` dans `static/css/style.css`
+- La page SHALL être générée uniquement à partir de `data/videos.yaml`.
+- Les vidéos SHALL utiliser `youtube-nocookie.com` avec chargement différé.
+- La page d'accueil MUST NOT charger d'iframe YouTube.
