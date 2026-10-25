@@ -59,6 +59,7 @@ themes-alternatifs/      Anciennes variantes CSS (non chargées, non publiées)
 |--------------|--------------|--------------------------|-----------|
 | `#accueil`   | Hero         | `config.toml` params     | actif     |
 | `#apropos`   | À propos     | `content/_index.md`      | actif     |
+| `#actualites`| Actualités   | dernier article de `content/blog/` | actif |
 | `#concerts`  | Concerts     | `data/concerts.yaml`     | actif     |
 | `#contact`   | Contact      | `config.toml` + `data/social.yaml` | actif |
 | `/radio/`    | Page Radio   | `data/radio.yaml`        | actif (page dédiée) |
@@ -94,6 +95,7 @@ Toujours lancer `make deploy-dry` avant `make deploy`.
 ## Blog
 
 Articles en Markdown dans `content/blog/` (liste paginée, 5 par page via `paginate` dans `config.toml`).
+Le dernier article publié s'affiche aussi sur l'accueil (section `#actualites`, masquée sans article).
 Front matter : `title`, `date`, `summary` (optionnel, sinon résumé automatique), `draft: true` pour ne pas publier.
 
 ## Schémas des data files

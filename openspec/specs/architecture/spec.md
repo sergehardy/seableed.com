@@ -11,6 +11,8 @@ Deux environnements : production (`www/`) et préproduction (`www/preprod/`, non
 
 Les métadonnées de `<head>` (SEO, partage, favicon, données structurées) sont centralisées dans `layouts/partials/seo.html` (spec `seo`).
 
+Ordre des sections de l'accueil : hero, À propos, Actualités (dernier article du blog), Concerts, Contact.
+
 ## Flux de génération
 
 ```

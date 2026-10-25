@@ -127,7 +127,7 @@ draft: false   # true : non publié par make build (visible avec make serve DEBU
 Texte de l'article en Markdown.
 ```
 
-La liste `/blog/` est paginée par 5 (`paginate` dans `config.toml`). Un article daté dans le futur n'est pas publié.
+La liste `/blog/` est paginée par 5 (`paginate` dans `config.toml`). Un article daté dans le futur n'est pas publié. Le dernier article publié (date la plus récente) s'affiche aussi sur l'accueil, dans la section « Actualités » ; elle disparaît s'il n'y a aucun article publié.
 
 ### Changer les photos de la pellicule
 
@@ -165,6 +165,7 @@ openspec/                      Specs et changements
 |-------------------|-----------|----------|-------------------------------------|
 | `/#accueil`       | Hero      | actif    | `config.toml`                       |
 | `/#apropos`       | À propos  | actif    | `content/_index.md`                 |
+| `/#actualites`    | Actualités | actif   | dernier article de `content/blog/`  |
 | `/#concerts`      | Concerts  | actif    | `data/concerts.yaml`                |
 | `/#contact`       | Contact   | actif    | `config.toml` + `data/social.yaml`  |
 | `/videos/`        | Vidéos    | actif    | `data/videos.yaml`                  |
