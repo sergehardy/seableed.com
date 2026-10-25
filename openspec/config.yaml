@@ -74,6 +74,10 @@ context: |
     link: string        # URL ou "#"
   ```
 
+  ## Blog
+  Articles Markdown dans `content/blog/` (front matter : title, date, summary, draft),
+  liste paginée `/blog/` (`paginate = 5` dans config.toml), layouts `layouts/blog/list.html` et `single.html`.
+
   ## Points d'attention
   - Le thème CSS actif est hardcodé dans baseof.html (`style.css`). Les fichiers
     `style-jaune.css` et `style-vert.css` existent mais ne sont pas chargés.

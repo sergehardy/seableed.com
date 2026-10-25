@@ -43,8 +43,14 @@ static/
 | `#concerts`  | Concerts     | `data/concerts.yaml`     | actif     |
 | `#contact`   | Contact      | `config.toml` + `data/social.yaml` | actif |
 | `/radio/`    | Page Radio   | `data/radio.yaml`        | actif (page dédiée) |
+| `/blog/`     | Blog         | `content/blog/*.md`      | actif (page dédiée) |
 | `#musique`   | Albums       | `data/albums.yaml`       | commenté  |
 | `/videos/`   | Page Vidéos  | `data/videos.yaml`       | actif (page dédiée) |
+
+## Blog
+
+Articles en Markdown dans `content/blog/` (liste paginée, 5 par page via `paginate` dans `config.toml`).
+Front matter : `title`, `date`, `summary` (optionnel, sinon résumé automatique), `draft: true` pour ne pas publier.
 
 ## Schémas des data files
 

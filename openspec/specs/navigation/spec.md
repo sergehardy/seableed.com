@@ -3,7 +3,7 @@
 ## Description
 
 Navigation sticky en haut de page, responsive avec menu hamburger sur mobile.
-Les liens pointent vers des ancres de la page d'accueil (`/#section`), sauf « Vidéos » et « Radio » qui pointent vers les pages dédiées `/videos/` et `/radio/`.
+Les liens pointent vers des ancres de la page d'accueil (`/#section`), sauf « Vidéos », « Radio » et « Blog » qui pointent vers les pages dédiées `/videos/`, `/radio/` et `/blog/`.
 
 ## Fichiers concernés
 
@@ -35,6 +35,10 @@ Les liens pointent vers des ancres de la page d'accueil (`/#section`), sauf « V
   name = "Radio"
   url = "/radio/"
   weight = 6
+[[menu.main]]
+  name = "Blog"
+  url = "/blog/"
+  weight = 7
 [[menu.main]]
   name = "Contact"
   url = "/#contact"
