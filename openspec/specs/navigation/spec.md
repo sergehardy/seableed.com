@@ -5,6 +5,8 @@
 Navigation sticky en haut de page, responsive avec menu hamburger sur mobile.
 Les liens pointent vers des ancres de la page d'accueil (`/#section`), sauf « Vidéos », « Radio » et « Blog » qui pointent vers les pages dédiées `/videos/`, `/radio/` et `/blog/`.
 
+Les liens du menu passent par `relURL` : ils suivent le `baseURL`, donc fonctionnent aussi dans le sous-répertoire de la préprod (`/preprod/videos/`, `/preprod/#concerts`).
+
 ## Fichiers concernés
 
 - `layouts/partials/header.html` — structure HTML de la nav

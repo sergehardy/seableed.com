@@ -7,6 +7,8 @@ La page d'accueil est mono-page avec navigation par ancres ; une page dédiée `
 
 Toutes les pages affichent, sous le menu, une pellicule de photos : une bande unique générée par Hugo à partir de `assets/pellicule/`.
 
+Deux environnements : production (`www/`) et préproduction (`www/preprod/`, non indexée), choisis par `ENV=prod|preprod` dans le Makefile (spec `preprod`).
+
 ## Flux de génération
 
 ```

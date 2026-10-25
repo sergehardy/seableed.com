@@ -9,7 +9,7 @@ Site statique [Hugo](https://gohugo.io/) du groupe de rock Seableed (Rennes). La
 Il faut Hugo en version étendue (testé avec 0.123.7, la version étendue est nécessaire pour la pellicule) et `lftp` pour le déploiement. Le fichier `.env` n'est pas versionné : on le crée à partir de `.env.example` avec les identifiants SFTP (les mêmes que dans FileZilla).
 
 ```bash
-cp .env.example .env   # puis renseigner FTP_HOST, FTP_USER, FTP_PASS, FTP_PATH
+cp .env.example .env   # puis renseigner FTP_HOST, FTP_USER, FTP_PASS, FTP_PATH (et PREPROD_FTP_PATH, PREPROD_URL)
 ```
 
 ### Commandes
@@ -20,17 +20,38 @@ make build       # génère public/ (minifié, supprime les anciens fichiers)
 make check       # build + vérifie que public/ ne contient que le site
 make deploy-dry  # simule le déploiement SFTP (à lancer avant deploy)
 make deploy      # check + upload SFTP (attention : mirror --delete)
-make ftp         # session SFTP interactive (cd dans FTP_PATH)
+make ftp         # session SFTP interactive (cd dans le dossier de l'environnement)
 make clean       # supprime public/ et resources/_gen/
 ```
+
+`build`, `check`, `deploy`, `deploy-dry` et `ftp` acceptent `ENV=prod` (défaut) ou `ENV=preprod`. Toute autre valeur est refusée.
 
 `make deploy` utilise `mirror --reverse --delete` : tout fichier distant absent de `public/` est supprimé. Lance toujours `make deploy-dry` d'abord et relis la liste.
 
 Hébergement OVH : le déploiement se fait en SFTP (SSH, port 22), comme FileZilla. Le FTP classique d'OVH refuse par intermittence la connexion de données. `FTP_PATH` doit valoir `www/` (chemin relatif au dossier du compte : en SFTP, `/www` n'existe pas).
 
+## Préproduction
+
+Le multisite OVH n'est pas disponible : la préprod est un sous-répertoire du même hébergement, `www/preprod/`, donc `https://www.seableed.com/preprod/`.
+
+```bash
+make deploy-dry ENV=preprod   # simule, à relire
+make deploy ENV=preprod       # construit avec le baseURL de la préprod et envoie dans www/preprod/
+curl -I https://www.seableed.com/preprod/ | grep -i x-robots-tag   # doit afficher noindex, nofollow
+make deploy-dry               # production : preprod/ est exclu du miroir, jamais supprimé
+make deploy                   # puis, une fois la préprod validée
+```
+
+- Variables dans `.env` : `PREPROD_FTP_PATH=www/preprod/` et `PREPROD_URL=https://www.seableed.com/preprod/`.
+- Le build préprod ajoute `<meta name="robots" content="noindex, nofollow">` à chaque page et l'en-tête `X-Robots-Tag` au `.htaccess` (module Apache `mod_headers`). Pas de `robots.txt` : il n'est lu qu'à la racine du domaine, et un `Disallow` empêcherait les robots de lire le `noindex`.
+- La préprod reste accessible par son URL (pas de mot de passe).
+- Le déploiement de production exclut `preprod/` du miroir : sans cela, `mirror --delete` l'effacerait.
+- Les liens du menu suivent le `baseURL` (`relURL`) pour fonctionner dans le sous-répertoire.
+- La sortie de `deploy` masque le mot de passe SFTP.
+
 ## Ce qui est déployé (et ce qui ne l'est pas)
 
-Seul le contenu de `public/` part en production. `make check` le reconstruit et échoue s'il y trouve un `png`, `jpg`, `md` ou `yaml`, puis liste les fichiers.
+Seul le contenu de `public/` part en production. `make check` le reconstruit et échoue s'il y trouve un `png`, `jpg`, `md` ou `yaml` (ou, selon l'environnement, un `noindex` en production ou son absence en préprod), puis liste les fichiers.
 
 - **Publié** : le HTML des pages, `sitemap.xml`, le flux RSS du blog, `.htaccess`, `css/style.css`, `js/main.js`, `images/hero-band-2026.jpeg` et les deux bandes de la pellicule (`pellicule/bande-bureau.<hash>.webp` et `bande-mobile.<hash>.webp`).
 - **Jamais publié** : les photos originales de `assets/pellicule/`, le cache `resources/_gen/`, `themes-alternatifs/`, les fichiers `data/`, `content/` et `openspec/`.

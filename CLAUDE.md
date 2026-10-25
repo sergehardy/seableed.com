@@ -9,6 +9,7 @@ make serve       # Serveur local http://localhost:1313 (hot-reload, drafts inclu
 make build       # Génère public/ (minifié, nettoie les anciens fichiers)
 make check       # Build + vérifie que public/ ne contient que le site
 make deploy      # Check + upload SFTP via lftp (requiert .env)
+# build/check/deploy/deploy-dry/ftp acceptent ENV=prod|preprod (prod par défaut), ex. make deploy ENV=preprod
 make deploy-dry  # Simule le déploiement
 make clean       # Supprime public/ et resources/_gen/
 ```
@@ -70,6 +71,12 @@ Hugo les assemble au build en **une seule image** (bande bureau + bande mobile, 
 affichée sous le menu sur toutes les pages et collée avec lui. Pour changer les photos : modifier le dossier,
 `make serve` (et `make clean` si une ancienne bande reste en cache), puis `make check` et `make deploy`.
 Sans photo, la pellicule n'apparaît pas.
+
+## Préproduction
+
+Sous-répertoire `www/preprod/` (`https://www.seableed.com/preprod/`), choisi avec `ENV=preprod` (variables `.env` : `PREPROD_FTP_PATH`, `PREPROD_URL`).
+Le build préprod ajoute `noindex, nofollow` (meta + en-tête `X-Robots-Tag` dans `.htaccess`), pas de `robots.txt`.
+Le déploiement de production exclut `preprod/` du miroir. Les liens du menu passent par `relURL`.
 
 ## Déploiement
 
