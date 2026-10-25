@@ -1,13 +1,14 @@
 # seableed.com
 
-Site statique Hugo pour le groupe de rock Seableed (Rennes, France). Site mono-page avec navigation par ancres.
+Site statique Hugo pour le groupe de rock Seableed (Rennes, France). Page d'accueil avec navigation par ancres, plus des pages dédiées `/videos/`, `/radio/` et `/blog/`.
 
 ## Commandes
 
 ```bash
 make serve       # Serveur local http://localhost:1313 (hot-reload, drafts inclus)
-make build       # Génère public/ (minifié)
-make deploy      # Build + upload FTP via lftp (requiert .env)
+make build       # Génère public/ (minifié, nettoie les anciens fichiers)
+make check       # Build + vérifie que public/ ne contient que le site
+make deploy      # Check + upload SFTP via lftp (requiert .env)
 make deploy-dry  # Simule le déploiement
 make clean       # Supprime public/ et resources/_gen/
 ```
@@ -18,20 +19,35 @@ Le déploiement lit les variables depuis `.env` (non versionné, voir `.env.exam
 
 ```
 layouts/
-  _default/baseof.html   Base HTML (head, nav, footer)
-  index.html             Page d'accueil (sections hero, concerts, apropos, contact)
+  _default/baseof.html   Base HTML (bloc collant .site-top : menu + pellicule, footer)
+  index.html             Page d'accueil (sections hero, apropos, concerts, contact)
+  videos/single.html     Page /videos/
+  radio/single.html      Page /radio/
+  blog/                  list.html (liste paginée) et single.html (article)
   partials/
     header.html          Navigation responsive
     footer.html          Pied de page
+    pellicule.html       Bande de photos (picture bureau/mobile)
+    pellicule-bande.html Assemble une bande unique à partir des photos
+
+content/
+  _index.md              Texte À propos
+  videos.md, radio.md    Pages dédiées (front matter seulement)
+  blog/                  Articles Markdown
 
 data/
-  concerts.yaml          Dates de concerts
-  social.yaml            Liens réseaux sociaux
+  concerts.yaml, social.yaml, videos.yaml, radio.yaml
   albums.yaml            Albums (désactivés pour l'instant)
 
-static/
+assets/pellicule/        Photos sources de la pellicule (jamais publiées telles quelles)
+
+static/                  Copié tel quel dans public/
   css/style.css          Thème principal (teal/rust)
   js/main.js             Menu mobile + smooth scroll
+  images/                hero-band-2026.jpeg
+  .htaccess              Redirection HTTPS
+
+themes-alternatifs/      Anciennes variantes CSS (non chargées, non publiées)
 ```
 
 ## Sections et ancres
@@ -49,9 +65,17 @@ static/
 
 ## Pellicule de photos
 
-Photos sources dans `assets/pellicule/` (≤ 2000 px de large, nommées `01-…`, `02-…` pour fixer l'ordre).
-Hugo génère les miniatures WebP 400×300 au build (`layouts/partials/pellicule.html`), affichées sous le hero.
-Le texte alternatif est déduit du nom de fichier. Sans photo, la pellicule n'apparaît pas.
+Photos sources dans `assets/pellicule/` (JPG/PNG, ≥ 800 px de large, ordre alphabétique : préfixer `01-`, `02-`…).
+Hugo les assemble au build en **une seule image** (bande bureau + bande mobile, presque noir et blanc, traits blancs),
+affichée sous le menu sur toutes les pages et collée avec lui. Pour changer les photos : modifier le dossier,
+`make serve` (et `make clean` si une ancienne bande reste en cache), puis `make check` et `make deploy`.
+Sans photo, la pellicule n'apparaît pas.
+
+## Déploiement
+
+Seul le contenu de `public/` est envoyé (SFTP, `mirror --delete`). Les photos originales, `resources/_gen/`, `themes-alternatifs/`
+et les sources ne doivent jamais y être. `make check` échoue si `public/` contient un png, jpg, md ou yaml.
+Toujours lancer `make deploy-dry` avant `make deploy`.
 
 ## Blog
 
@@ -100,7 +124,7 @@ playlist:
 ## Points d'attention
 
 - Le thème CSS actif est **hardcodé** dans `baseof.html` (`style.css`).
-  Les fichiers `style-jaune.css` et `style-vert.css` existent mais ne sont pas chargés.
+  Les variantes `style-jaune.css` et `style-vert.css` sont rangées dans `themes-alternatifs/` (non chargées, non publiées).
 - La section À propos est la **seule section pilotée par du Markdown** (`content/_index.md`),
   pas par un data file YAML.
 - Font Awesome 6.5.1 est chargé via CDN dans `baseof.html`.
@@ -114,5 +138,5 @@ playlist:
 
 ## OpenSpec
 
-Les specs de chaque section sont dans `openspec/specs/`.
+Les specs de chaque section sont dans `openspec/specs/` ; les changements terminés dans `openspec/changes/archive/`.
 Pour proposer un changement : `/openspec-propose` ou `/opsx:propose`.

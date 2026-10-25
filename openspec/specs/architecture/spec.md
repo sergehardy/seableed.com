@@ -5,7 +5,7 @@
 Seableed.com est un site statique généré par Hugo, déployé via FTP.
 La page d'accueil est mono-page avec navigation par ancres ; une page dédiée `/videos/` (layout `layouts/videos/single.html`) complète le site.
 
-La page d'accueil affiche, sous le hero, une pellicule de miniatures générées par Hugo à partir de `assets/pellicule/`.
+Toutes les pages affichent, sous le menu, une pellicule de photos : une bande unique générée par Hugo à partir de `assets/pellicule/`.
 
 ## Flux de génération
 
@@ -53,10 +53,10 @@ Les credentials FTP sont dans `.env` (non versionné). Voir `.env.example` pour 
 ## Assets statiques
 
 - `static/css/style.css` — thème actif, chargé par baseof.html
-- `static/css/style-jaune.css` — variante jaune (orpheline, non chargée)
-- `static/css/style-vert.css` — doublon du thème principal (orpheline, non chargée)
+- `themes-alternatifs/` — anciennes variantes CSS (jaune, vert), non chargées et non publiées
 - `static/js/main.js` — hamburger menu + smooth scroll (vanilla JS)
-- `static/images/hero-band.jpg` — photo du groupe (section hero)
+- `static/images/hero-band-2026.jpeg` — photo du groupe (section hero)
+- `assets/pellicule/` — photos sources de la pellicule (non publiées telles quelles)
 
 ## Dépendances externes
 

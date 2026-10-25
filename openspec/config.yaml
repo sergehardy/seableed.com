@@ -11,8 +11,8 @@ context: |
   - Langue : français
 
   ## Architecture
-  Site mono-page avec navigation par ancres. Une seule route (`/`).
-  Sections dans l'ordre d'affichage : #accueil → #apropos → #concerts → #contact
+  Page d'accueil avec navigation par ancres (#accueil → #apropos → #concerts → #contact)
+  et pages dédiées : /videos/, /radio/, /blog/.
 
   ## Fichiers importants
   - `config.toml` — configuration Hugo (params: bandName, genre, location, email ; menus)
@@ -75,8 +75,9 @@ context: |
   ```
 
   ## Pellicule de photos
-  Photos dans `assets/pellicule/` (nommage `01-…` pour l'ordre) ; miniatures WebP 400x300 générées
-  par Hugo (`layouts/partials/pellicule.html`), bandeau sous le hero ; absent s'il n'y a aucune photo.
+  Photos dans `assets/pellicule/` (nommage `01-…` pour l'ordre) ; Hugo les assemble en une bande unique
+  (`layouts/partials/pellicule.html` et `pellicule-bande.html`) affichée sous le menu, sur toutes les pages,
+  collée avec le menu ; absente s'il n'y a aucune photo.
 
   ## Blog
   Articles Markdown dans `content/blog/` (front matter : title, date, summary, draft),
@@ -84,7 +85,7 @@ context: |
 
   ## Points d'attention
   - Le thème CSS actif est hardcodé dans baseof.html (`style.css`). Les fichiers
-    `style-jaune.css` et `style-vert.css` existent mais ne sont pas chargés.
+    `style-jaune.css` et `style-vert.css` sont rangés dans `themes-alternatifs/` (non chargés, non publiés).
   - La section Albums (`#musique`) est entièrement commentée dans index.html et albums.yaml.
   - La page Vidéos (`/videos/`, `layouts/videos/single.html`) est une page Hugo dédiée pilotée par `data/videos.yaml` (embeds youtube-nocookie, lazy).
   - `data/social.yaml` contient déjà le lien YouTube (@seableed) — utilisable comme

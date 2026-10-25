@@ -2,27 +2,35 @@
 
 ## Description
 
-Bandeau horizontal de miniatures sous le hero de la page d'accueil, construit automatiquement par Hugo à partir d'un répertoire de photos.
+Bande de miniatures en noir et blanc sous le menu, sur toutes les pages, assemblée **en une seule image** par Hugo au build à partir des photos de `assets/pellicule/`. Le menu et la pellicule sont collés ensemble en haut de l'écran.
 
 ## Statut
 
-**Actif** (le bandeau n'apparaît que si `assets/pellicule/` contient des images)
+**Actif** (la pellicule n'apparaît que si `assets/pellicule/` contient des images)
 
 ## Fichiers concernés
 
-- `assets/pellicule/*` — photos sources (≤ 2000 px, nommées `01-…`, `02-…` pour l'ordre)
-- `layouts/partials/pellicule.html` — génération des miniatures et HTML
-- `layouts/index.html` — appel du partial sous le hero
-- `static/css/style.css` — styles `.pellicule`
+- `assets/pellicule/*` — photos sources (JPG/PNG, ≥ 800 px de large conseillé ; l'ordre est alphabétique : préfixer `01-`, `02-`…)
+- `layouts/partials/pellicule.html` — appelle la bande bureau et la bande mobile et écrit le `<picture>`
+- `layouts/partials/pellicule-bande.html` — assemble une bande (tuiles recadrées, presque noir et blanc, séparées par un trait blanc)
+- `layouts/_default/baseof.html` — bloc `.site-top` (menu + pellicule) collant, présent sur toutes les pages
+- `static/css/style.css` — `.site-top`, `.pellicule`, `scroll-padding-top` (les ancres ne passent pas sous le bloc collant)
 
 ## Comportement
 
-- Miniatures WebP 400×300 (`Fill`, ancre centre, qualité 80), identiques quelle que soit la taille d'origine.
-- Affichées à 180 px de haut (140 px sur mobile), bandeau défilant en CSS (`overflow-x`, scroll-snap), même largeur que le hero.
-- `loading="lazy"`, `width`/`height` déclarés, `alt` déduit du nom de fichier.
-- Aucun outil externe : miniatures dans `resources/_gen` (non versionné).
+- Deux images WebP sont générées : bande bureau (30 tuiles = les photos répétées deux fois, 2880×112, affichée à 56 px de haut) et bande mobile (13 tuiles, 780×80, affichée à 40 px de haut, sous 768 px).
+- Chaque tuile est recadrée au centre ; les photos sont passées en presque noir et blanc (saturation −90 %) ; un trait blanc sépare les tuiles ; deux bandes blanches de 3 px encadrent la pellicule.
+- L'image occupe toute la largeur de l'écran (`width: 100%`, `object-fit: fill`) : aucune photo coupée à droite, avec une légère variation du ratio des tuiles selon la largeur de la fenêtre.
+- `alt` vide (bandeau décoratif) et `role="img"` avec un `aria-label` sur le conteneur.
+- Les photos d'origine MUST NOT être publiées : seules les deux bandes sortent dans `public/pellicule/` (noms `bande-bureau.<hash>.webp` et `bande-mobile.<hash>.webp`).
+
+## Changer les photos
+
+1. Remplacer ou ajouter des photos dans `assets/pellicule/` (l'ordre suit l'ordre alphabétique).
+2. `make serve` pour contrôler le rendu ; si une ancienne bande reste en cache, `make clean`.
+3. `make check` (vérifie `public/`), puis `make deploy-dry` et `make deploy`.
 
 ## Exigences
 
-- La pellicule SHALL être construite depuis `assets/pellicule/` sans autre liste.
-- La photo d'origine MUST NOT être servie dans le bandeau.
+- La pellicule SHALL être construite depuis `assets/pellicule/` sans autre liste à maintenir.
+- Le menu et la pellicule SHALL rester visibles en haut lors du défilement, sur toutes les pages.

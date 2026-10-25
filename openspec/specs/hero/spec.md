@@ -7,14 +7,14 @@ et la ville. Point d'entrée visuel du site.
 
 ## Pellicule
 
-Juste sous le hero, la pellicule de photos (`layouts/partials/pellicule.html`, spec `pellicule`) s'affiche avant la section À propos.
+La pellicule de photos (spec `pellicule`) est dans le bloc collant `.site-top`, entre le menu et le hero, sur toutes les pages.
 
 ## Fichiers concernés
 
 - `layouts/index.html` — template de la section (`<section class="hero" id="accueil">`)
 - `config.toml` — source des données affichées
 - `static/css/style.css` — styles `.hero`
-- `static/images/hero-band.jpg` — photo de fond (ou décoration)
+- `static/images/hero-band-2026.jpeg` — photo de fond
 
 ## Template Hugo
 
@@ -39,7 +39,7 @@ Juste sous le hero, la pellicule de photos (`layouts/partials/pellicule.html`, s
 - Fond sombre (teal `#3a5a52`) avec texte clair
 - Pleine hauteur d'écran (`min-height: 100vh`)
 - Centré verticalement et horizontalement
-- `hero-band.jpg` utilisé comme image (présent dans `static/images/`)
+- `hero-band-2026.jpeg` utilisé comme image (présent dans `static/images/`)
 
 ## Bouton CTA désactivé
 

@@ -22,6 +22,12 @@ Hugo extended v0.123.7 est installé (`hugo version`) : il sait redimensionner, 
 - **Emplacement** : directement sous `.hero` dans `layouts/index.html`, avec sa propre classe `.pellicule` (pas un `section` max-width 1200 : même largeur que le hero, 1136 px).
 - **Photos d'exemple** : pour tester, au moins 10 photos fournies par l'utilisateur ; sinon un jeu d'images générées temporaires, non commitées.
 
+## Évolution : bande unique assemblée au build
+
+Les premières miniatures séparées (une `<img>` par photo) ont été remplacées par **une seule image** : `layouts/partials/pellicule-bande.html` recadre chaque photo (`.Fill`), la passe en presque noir et blanc (`images.Saturation -90`), puis `images.Overlay` la place sur une toile blanche, ce qui crée le trait blanc entre tuiles. Les photos sont répétées deux fois. Deux bandes sont produites (bureau 2880×112, mobile 780×80) et choisies par `<picture>`. Avantages : une requête, apparition d'un bloc, traits blancs dans l'image. Inconvénient : la bande est étirée à la largeur de l'écran (légère variation de ratio). Les noms publiés sont propres et versionnés par hash (`resources.Copy` + `fingerprint`).
+
+**Reconstruire avec d'autres photos** : remplacer/ajouter des photos dans `assets/pellicule/` (ordre alphabétique, préfixes `01-`…), `make serve` pour contrôler, `make clean` si une ancienne bande reste en cache, puis `make check`, `make deploy-dry`, `make deploy`. Aucune commande spécifique : Hugo reconstruit la bande à chaque build.
+
 ## Risks / Trade-offs
 
 - [Temps de build augmenté avec beaucoup de photos] → le cache `resources/_gen` évite de régénérer ; `make clean` le supprime.

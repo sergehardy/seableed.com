@@ -8,8 +8,8 @@ est chargé. Les deux autres sont des variantes expérimentales non actives.
 ## Fichiers concernés
 
 - `static/css/style.css` — thème actif (teal/rust)
-- `static/css/style-jaune.css` — variante jaune (orpheline)
-- `static/css/style-vert.css` — doublon du thème principal (orpheline)
+- `themes-alternatifs/style-jaune.css` — variante jaune (orpheline, hors `static/`, non publiée)
+- `themes-alternatifs/style-vert.css` — doublon du thème principal (orpheline, hors `static/`, non publiée)
 - `layouts/_default/baseof.html` — chargement du CSS (hardcodé)
 
 ## Thème actif (style.css)
