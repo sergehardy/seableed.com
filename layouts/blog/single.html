@@ -1,0 +1,12 @@
+{{ define "main" }}
+<section class="blog">
+    <article class="post">
+        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "02/01/2006" }}</time>
+        <h1>{{ .Title }}</h1>
+        <div class="post-content">
+            {{ .Content }}
+        </div>
+        <p class="post-back"><a href="{{ "blog/" | relURL }}">&laquo; Retour au blog</a></p>
+    </article>
+</section>
+{{ end }}

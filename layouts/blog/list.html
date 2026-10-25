@@ -1,0 +1,28 @@
+{{ define "main" }}
+<section class="blog-hero">
+    <h1>{{ .Title }}</h1>
+    {{ with .Content }}<p>{{ . | plainify }}</p>{{ end }}
+</section>
+
+<section class="blog">
+    {{ $p := .Paginate (.Pages.ByDate.Reverse) }}
+    {{ range $p.Pages }}
+    <article class="post-card">
+        <time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "02/01/2006" }}</time>
+        <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+        <p>{{ with .Params.summary }}{{ . }}{{ else }}{{ .Summary | plainify }}{{ end }}</p>
+        <a href="{{ .RelPermalink }}" class="btn">Lire</a>
+    </article>
+    {{ end }}
+
+    {{ if gt $p.TotalPages 1 }}
+    <nav class="pagination" aria-label="Pagination">
+        {{ if $p.HasPrev }}<a href="{{ $p.Prev.URL }}" rel="prev">&laquo; Précédent</a>{{ end }}
+        {{ range $p.Pagers }}
+        {{ if eq . $p }}<span class="current" aria-current="page">{{ .PageNumber }}</span>{{ else }}<a href="{{ .URL }}">{{ .PageNumber }}</a>{{ end }}
+        {{ end }}
+        {{ if $p.HasNext }}<a href="{{ $p.Next.URL }}" rel="next">Suivant &raquo;</a>{{ end }}
+    </nav>
+    {{ end }}
+</section>
+{{ end }}

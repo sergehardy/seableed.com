@@ -474,3 +474,120 @@ footer {
         height: 600px;
     }
 }
+
+/* Blog */
+.blog-hero {
+    text-align: center;
+    padding-bottom: 1rem;
+}
+
+.blog-hero h1 {
+    font-size: 3rem;
+    color: #3a5a52;
+}
+
+.blog-hero p {
+    font-size: 1.3rem;
+    color: #6b7e7a;
+}
+
+.post-card,
+.post {
+    background: #fff;
+    border-radius: 8px;
+    padding: 2rem;
+    margin-bottom: 2rem;
+    box-shadow: 0 2px 10px rgba(58, 90, 82, 0.15);
+}
+
+.post-card time,
+.post time {
+    color: #6b7e7a;
+    font-size: 0.9rem;
+}
+
+.post-card h2 {
+    margin: 0.25rem 0 0.75rem;
+    text-align: left;
+    font-size: 1.6rem;
+}
+
+.post-card h2 a {
+    color: #3a5a52;
+    text-decoration: none;
+}
+
+.post-card h2 a:hover {
+    color: #d4604d;
+}
+
+.post-card p {
+    margin-bottom: 1rem;
+}
+
+.post h1 {
+    color: #3a5a52;
+    margin: 0.25rem 0 1.5rem;
+}
+
+.post-content {
+    line-height: 1.8;
+}
+
+.post-content p,
+.post-content ul,
+.post-content ol {
+    margin-bottom: 1rem;
+}
+
+.post-content h2,
+.post-content h3 {
+    color: #3a5a52;
+    margin: 1.5rem 0 0.5rem;
+    text-align: left;
+}
+
+.post-content ul,
+.post-content ol {
+    padding-left: 1.5rem;
+}
+
+.post-content img {
+    max-width: 100%;
+    height: auto;
+}
+
+.post-back {
+    margin-top: 2rem;
+}
+
+.post-back a,
+.pagination a {
+    color: #d4604d;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+.pagination {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    align-items: center;
+}
+
+.pagination .current {
+    font-weight: bold;
+    color: #3a5a52;
+}
+
+@media (max-width: 768px) {
+    .blog-hero h1 {
+        font-size: 2rem;
+    }
+
+    .post-card,
+    .post {
+        padding: 1.25rem;
+    }
+}
