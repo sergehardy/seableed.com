@@ -33,7 +33,7 @@ Chaque concert affiche la date, le lieu et un bouton vers la billetterie.
                 <strong>{{ .venue }}</strong><br>
                 {{ .location }}
             </div>
-            <a href="{{ .ticketLink }}" class="btn">Billets</a>
+            <a href="{{ .ticketLink }}" class="btn">Infos</a>
         </div>
         {{ end }}
     </div>
