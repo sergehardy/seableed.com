@@ -9,7 +9,7 @@
 
 - [x] 2.1 Ajouter `paginate = 5` à `config.toml` et créer `layouts/blog/list.html` (liste du plus récent au plus ancien, `.Paginate`, liens Précédent/Suivant) et vérifier avec 6 articles de test que `public/blog/page/2/` existe
 - [x] 2.2 Créer `layouts/blog/single.html` (titre, date, contenu, lien retour) et vérifier que la page d'article est générée
-- [ ] 2.3 Ajouter les styles du blog dans `static/css/style.css` (cartes d'articles, pagination, typographie de l'article) et vérifier le rendu desktop et mobile
+- [x] 2.3 Ajouter les styles du blog dans `static/css/style.css` (cartes d'articles, pagination, typographie de l'article) et vérifier le rendu desktop et mobile
 
 ## 3. Navigation
 
@@ -18,4 +18,4 @@
 
 ## 4. Vérification finale
 
-- [ ] 4.1 Vérifier avec `make serve` : liste, pagination (avec plus de 5 articles de test, à supprimer ensuite), page d'article, brouillons absents en `make build`, rendu mobile
+- [x] 4.1 Vérifier avec `make serve` : liste, pagination (avec plus de 5 articles de test, à supprimer ensuite), page d'article, brouillons absents en `make build`, rendu mobile
