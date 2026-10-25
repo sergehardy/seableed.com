@@ -26,4 +26,4 @@
 
 ## 6. Vérification finale
 
-- [ ] 6.1 Vérifier avec `make serve` et `make check` (prod et `ENV=preprod`) : aperçus corrects dans `view-source`, `noindex` conservé en préprod, `robots.txt` seulement en prod, hero inchangé ; puis `make deploy-dry` relu avec l'utilisateur
+- [x] 6.1 Vérifier avec `make serve` et `make check` (prod et `ENV=preprod`) : aperçus corrects dans `view-source`, `noindex` conservé en préprod, `robots.txt` seulement en prod, hero inchangé ; puis `make deploy-dry` relu avec l'utilisateur
