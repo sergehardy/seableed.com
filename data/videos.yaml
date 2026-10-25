@@ -1,0 +1,14 @@
+# Page /videos/ : chaîne YouTube puis playlists, chacune avec ses vidéos.
+# youtubeId : valeur après "v=" dans l'URL de la vidéo.
+channel:
+  name: "Seableed sur YouTube"
+  url: "https://www.youtube.com/@seableed"
+
+playlists:
+  - title: "Fête de la musique 2026"
+    url: "https://www.youtube.com/playlist?list=PLF4EOYR9fg2whpQl0ImqItlzflPx_BGRk"
+    videos:
+      - title: "Fortunate son"
+        youtubeId: "vudTL8M3hqk"
+      - title: "Lonely boy"
+        youtubeId: "f5XM0AnTaKU"

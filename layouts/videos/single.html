@@ -1,0 +1,29 @@
+{{ define "main" }}
+{{ $videos := .Site.Data.videos }}
+<section class="videos-hero">
+    <h1>{{ .Title }}</h1>
+    <p>Découvrez {{ .Site.Params.bandName }} sur scène</p>
+    {{ with $videos.channel }}
+    <a href="{{ .url }}" class="btn" target="_blank" rel="noopener"><i class="fa-brands fa-youtube"></i> {{ .name }}</a>
+    {{ end }}
+</section>
+
+{{ range $videos.playlists }}
+<section class="playlist">
+    <div class="playlist-header">
+        <h2>{{ .title }}</h2>
+        <a href="{{ .url }}" target="_blank" rel="noopener">Voir la playlist <i class="fa-solid fa-arrow-up-right-from-square"></i></a>
+    </div>
+    <div class="videos">
+        {{ range .videos }}
+        <div class="video">
+            <div class="video-embed">
+                <iframe src="https://www.youtube-nocookie.com/embed/{{ .youtubeId }}" title="{{ .title }}" loading="lazy" allowfullscreen></iframe>
+            </div>
+            <h3>{{ .title }}</h3>
+        </div>
+        {{ end }}
+    </div>
+</section>
+{{ end }}
+{{ end }}
