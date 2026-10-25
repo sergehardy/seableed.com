@@ -5,4 +5,4 @@ summary: "Compte instagram"
 draft: false   # true : non publié par make build
 ---
 
-Nous sommes désormais présent sur (Instagram)[https://www.instagram.com/_seableed], suivez-nous !
+Nous sommes désormais présent sur [Instagram](https://www.instagram.com/_seableed), suivez-nous !
