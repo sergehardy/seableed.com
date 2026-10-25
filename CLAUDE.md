@@ -41,11 +41,12 @@ data/
   albums.yaml            Albums (désactivés pour l'instant)
 
 assets/pellicule/        Photos sources de la pellicule (jamais publiées telles quelles)
+assets/images/           Photo du hero (publiée + image de partage 1200x630)
+assets/favicon.ico       Favicon
 
 static/                  Copié tel quel dans public/
   css/style.css          Thème principal (teal/rust)
   js/main.js             Menu mobile + smooth scroll
-  images/                hero-band-2026.jpeg
   .htaccess              Redirection HTTPS
 
 themes-alternatifs/      Anciennes variantes CSS (non chargées, non publiées)
@@ -63,6 +64,11 @@ themes-alternatifs/      Anciennes variantes CSS (non chargées, non publiées)
 | `/blog/`     | Blog         | `content/blog/*.md`      | actif (page dédiée) |
 | `#musique`   | Albums       | `data/albums.yaml`       | commenté  |
 | `/videos/`   | Page Vidéos  | `data/videos.yaml`       | actif (page dédiée) |
+
+## Visibilité
+
+`layouts/partials/seo.html` (inclus dans `baseof.html`) : titre et description par page (front matter `description`/`summary`, sinon `[params]`), canonical, Open Graph et Twitter (image 1200×630 Hugo depuis `assets/images/hero-band-2026.jpeg`), lien RSS du blog, favicon (`assets/favicon.ico`), JSON-LD `MusicGroup` + `Event` sur l'accueil en production (concerts `jj/mm/aaaa`).
+`robots.txt` (`layouts/robots.txt`) seulement en production (sitemap, sans `Disallow`) ; la préprod garde `noindex` et n'a ni robots.txt ni JSON-LD. Actions manuelles : voir README.
 
 ## Pellicule de photos
 

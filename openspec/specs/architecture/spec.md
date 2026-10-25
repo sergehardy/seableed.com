@@ -9,6 +9,8 @@ Toutes les pages affichent, sous le menu, une pellicule de photos : une bande un
 
 Deux environnements : production (`www/`) et préproduction (`www/preprod/`, non indexée), choisis par `ENV=prod|preprod` dans le Makefile (spec `preprod`).
 
+Les métadonnées de `<head>` (SEO, partage, favicon, données structurées) sont centralisées dans `layouts/partials/seo.html` (spec `seo`).
+
 ## Flux de génération
 
 ```

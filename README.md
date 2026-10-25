@@ -49,11 +49,28 @@ make deploy                   # puis, une fois la préprod validée
 - Les liens du menu suivent le `baseURL` (`relURL`) pour fonctionner dans le sous-répertoire.
 - La sortie de `deploy` masque le mot de passe SFTP.
 
+## Visibilité (SEO et partage)
+
+- **Par page** : le titre et la description viennent du front matter (`description:`, ou `summary:` pour un article de blog), sinon de `[params]` dans `config.toml`. L'accueil utilise `homeTitle`. Chaque page a un `canonical`.
+- **Aperçu de partage** (Facebook, WhatsApp, e-mail) : balises Open Graph et Twitter Card avec une image 1200×630 générée par Hugo depuis `assets/images/hero-band-2026.jpeg`.
+- **Données structurées** (accueil, production seulement) : le groupe (`MusicGroup`, liens de `data/social.yaml`) et un `Event` par concert dont la date est au format `jj/mm/aaaa`. Une date d'un autre format est ignorée sans erreur.
+- **robots.txt** (production seulement) : annonce `sitemap.xml`, sans aucune interdiction. Le sitemap est généré par Hugo.
+- **RSS** : le flux du blog est `/blog/index.xml`, déclaré dans le `<head>` de toutes les pages.
+- **Favicon** : `assets/favicon.ico`.
+
+À faire à la main, une fois le site en production :
+
+1. Ajouter le site dans [Google Search Console](https://search.google.com/search-console) et [Bing Webmaster Tools](https://www.bing.com/webmasters), puis soumettre `https://www.seableed.com/sitemap.xml`.
+2. Mettre l'adresse du site dans les bios Instagram, Facebook, YouTube et Spotify : ces liens vers le site aident le plus le référencement.
+3. Tester l'aperçu d'une page dans le [débogueur de partage Facebook](https://developers.facebook.com/tools/debug/) (il force aussi le rafraîchissement du cache d'image).
+
+Avant de déployer, arrêter `make serve` : un serveur Hugo en marche peut réécrire `public/` avec des adresses `localhost`.
+
 ## Ce qui est déployé (et ce qui ne l'est pas)
 
 Seul le contenu de `public/` part en production. `make check` le reconstruit et échoue s'il y trouve un `png`, `jpg`, `md` ou `yaml` (ou, selon l'environnement, un `noindex` en production ou son absence en préprod), puis liste les fichiers.
 
-- **Publié** : le HTML des pages, `sitemap.xml`, le flux RSS du blog, `.htaccess`, `css/style.css`, `js/main.js`, `images/hero-band-2026.jpeg` et les deux bandes de la pellicule (`pellicule/bande-bureau.<hash>.webp` et `bande-mobile.<hash>.webp`).
+- **Publié** : le HTML des pages, `sitemap.xml`, `robots.txt` (production seulement), `favicon.ico`, le flux RSS du blog, `.htaccess`, `css/style.css`, `js/main.js`, `images/hero-band-2026.jpeg`, l'image de partage 1200×630 et les deux bandes de la pellicule (`pellicule/bande-bureau.<hash>.webp` et `bande-mobile.<hash>.webp`).
 - **Jamais publié** : les photos originales de `assets/pellicule/`, le cache `resources/_gen/`, `themes-alternatifs/`, les fichiers `data/`, `content/` et `openspec/`.
 
 ## Mises à jour courantes
@@ -132,7 +149,9 @@ layouts/index.html             Accueil
 layouts/videos|radio|blog/     Templates des pages dédiées
 layouts/partials/              header, footer, pellicule, pellicule-bande
 assets/pellicule/              Photos sources de la pellicule (non publiées)
-static/                        css/style.css, js/main.js, images/, .htaccess (copiés dans public/)
+assets/images/                 Photo du hero (publiée et recadrée pour le partage)
+assets/favicon.ico             Favicon
+static/                        css/style.css, js/main.js, .htaccess (copiés dans public/)
 themes-alternatifs/            Anciennes variantes CSS (non chargées, non publiées)
 openspec/                      Specs et changements
 ```
