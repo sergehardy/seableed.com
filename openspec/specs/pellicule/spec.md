@@ -18,7 +18,7 @@ Bande de miniatures en noir et blanc sous le menu, sur toutes les pages, assembl
 
 ## Comportement
 
-- Deux images WebP sont générées : bande bureau (une tuile par photo, 2880×112, affichée à 56 px de haut) et bande mobile (les 6 premières photos, 780×80, affichée à 40 px de haut, sous 768 px).
+- Deux images WebP sont générées : bande bureau (les photos répétées deux fois, 30 tuiles, 2880×56, affichée à 28 px de haut) et bande mobile (12 tuiles, 780×40, affichée à 20 px de haut, sous 768 px).
 - Chaque tuile est recadrée sur la zone d'intérêt (recadrage intelligent), réduite en Lanczos, passée en presque noir et blanc (saturation −75 %) avec plus de contraste (+20) ; un trait blanc sépare les tuiles ; deux bandes blanches de 3 px encadrent la pellicule.
 - Le montage se fait en PNG (sans perte) et n'est converti en WebP qu'à la fin : empiler les tuiles directement en WebP les dégrade (bruit, gris).
 - L'image occupe toute la largeur de l'écran (`width: 100%`, `object-fit: fill`) : aucune photo coupée à droite, avec une légère variation du ratio des tuiles selon la largeur de la fenêtre.
