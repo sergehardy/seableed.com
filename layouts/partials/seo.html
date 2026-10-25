@@ -1,0 +1,42 @@
+{{/* Métadonnées de <head> : titre, description, canonical, Open Graph, Twitter, RSS, favicon, JSON-LD. */}}
+{{ $titre := cond .IsHome .Site.Params.homeTitle (printf "%s - %s" .Title .Site.Title) }}
+{{ $description := .Params.description | default .Params.summary | default .Site.Params.description | plainify }}
+{{ $hero := resources.Get "images/hero-band-2026.jpeg" }}
+{{ $hero.Publish }}
+{{ $partage := $hero.Fill "1200x630 Smart q85" }}
+{{ $type := cond (and .IsPage (eq .Section "blog")) "article" "website" }}
+<title>{{ $titre }}</title>
+<meta name="description" content="{{ $description }}">
+<link rel="canonical" href="{{ .Permalink }}">
+{{ if eq hugo.Environment "preprod" }}<meta name="robots" content="noindex, nofollow">{{ end }}
+<meta property="og:site_name" content="{{ .Site.Title }}">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:type" content="{{ $type }}">
+<meta property="og:title" content="{{ $titre }}">
+<meta property="og:description" content="{{ $description }}">
+<meta property="og:url" content="{{ .Permalink }}">
+<meta property="og:image" content="{{ $partage.Permalink }}">
+<meta property="og:image:width" content="{{ $partage.Width }}">
+<meta property="og:image:height" content="{{ $partage.Height }}">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="{{ $titre }}">
+<meta name="twitter:description" content="{{ $description }}">
+<meta name="twitter:image" content="{{ $partage.Permalink }}">
+{{ with .Site.GetPage "/blog" }}{{ with .OutputFormats.Get "RSS" }}<link rel="alternate" type="application/rss+xml" title="Blog {{ $.Site.Title }}" href="{{ .Permalink }}">{{ end }}{{ end }}
+{{ with resources.Get "favicon.ico" }}<link rel="icon" href="{{ .RelPermalink }}" sizes="any">{{ end }}
+{{ if and .IsHome (ne hugo.Environment "preprod") }}
+{{ $evenements := slice }}
+{{ range .Site.Data.concerts }}
+    {{ if findRE `^\d{2}/\d{2}/\d{4}$` (printf "%v" .date) }}
+        {{ $p := split .date "/" }}
+        {{ $evenement := dict "@type" "Event" "name" (printf "Concert de %s" $.Site.Params.bandName) "startDate" (printf "%s-%s-%s" (index $p 2) (index $p 1) (index $p 0)) "location" (dict "@type" "Place" "name" .venue "address" .location) "performer" (dict "@type" "MusicGroup" "name" $.Site.Params.bandName) }}
+        {{ if hasPrefix (printf "%v" .ticketLink) "http" }}{{ $evenement = merge $evenement (dict "url" .ticketLink) }}{{ end }}
+        {{ $evenements = $evenements | append $evenement }}
+    {{ end }}
+{{ end }}
+{{ $reseaux := slice }}
+{{ range .Site.Data.social }}{{ if hasPrefix .url "http" }}{{ $reseaux = $reseaux | append .url }}{{ end }}{{ end }}
+{{ $groupe := dict "@type" "MusicGroup" "name" .Site.Params.bandName "url" .Site.BaseURL "genre" .Site.Params.genre "foundingLocation" (dict "@type" "Place" "name" .Site.Params.location) "sameAs" $reseaux }}
+{{ $donnees := dict "@context" "https://schema.org" "@graph" (slice $groupe | append $evenements) }}
+<script type="application/ld+json">{{ $donnees | jsonify | safeJS }}</script>
+{{ end }}

@@ -4,6 +4,8 @@ title = 'Seableed'
 
 paginate = 5
 
+enableRobotsTXT = true
+
 # Pas de taxonomies (categories/tags) : rien à publier
 disableKinds = ["taxonomy", "term"]
 
@@ -13,7 +15,8 @@ disableKinds = ["taxonomy", "term"]
   section = ["HTML", "RSS"]
 
 [params]
-  description = "Site officiel du groupe Seableed"
+  homeTitle = "Seableed – groupe de rock à Rennes"
+  description = "Seableed, groupe de rock rennais : reprises rock et pop mêlant guitare et claviers. Concerts, vidéos, radio et blog."
   bandName = "Seableed"
   genre = "Rock & co."
   location = "Rennes, France"

@@ -57,6 +57,7 @@ help:
 build: _env
 	$(HUGO) --minify --cleanDestinationDir $(HUGO_ENV_FLAGS)
 ifeq ($(ENV),preprod)
+	@rm -f $(PUBLIC)/robots.txt
 	@printf '\n<IfModule mod_headers.c>\n  Header set X-Robots-Tag "noindex, nofollow"\n</IfModule>\n' >> $(PUBLIC)/.htaccess
 endif
 
@@ -67,8 +68,10 @@ check: build
 ifeq ($(ENV),preprod)
 	@missing=$$(grep -rL 'name=robots content="noindex, nofollow"\|name=robots content=noindex,nofollow\|http-equiv=' $(PUBLIC) --include='*.html'); \
 	if [ -n "$$missing" ]; then echo "Meta noindex manquante (preprod) :"; echo "$$missing"; exit 1; fi; \
-	grep -q 'X-Robots-Tag' $(PUBLIC)/.htaccess || (echo "X-Robots-Tag manquant dans $(PUBLIC)/.htaccess (preprod)" && exit 1)
+	grep -q 'X-Robots-Tag' $(PUBLIC)/.htaccess || (echo "X-Robots-Tag manquant dans $(PUBLIC)/.htaccess (preprod)" && exit 1); \
+	test ! -f $(PUBLIC)/robots.txt || (echo "robots.txt présent en preprod (inutile dans un sous-répertoire)" && exit 1)
 else
+	@grep -q '^Sitemap: https://' $(PUBLIC)/robots.txt || (echo "robots.txt (avec Sitemap) manquant dans le build de production" && exit 1)
 	@# Les pages d'alias générées par Hugo (redirections, http-equiv) portent déjà leur propre noindex
 	@if grep -rL 'http-equiv=' $(PUBLIC) --include='*.html' | xargs -r grep -li 'noindex' | grep -q . || grep -q 'X-Robots-Tag' $(PUBLIC)/.htaccess; then echo "noindex présent dans le build de production"; exit 1; fi
 endif
