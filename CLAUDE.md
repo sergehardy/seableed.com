@@ -5,7 +5,8 @@ Site statique Hugo pour le groupe de rock Seableed (Rennes, France). Page d'accu
 ## Commandes
 
 ```bash
-make serve       # Serveur local http://localhost:1313 (hot-reload, drafts inclus)
+make serve       # Serveur local http://localhost:1313 (hot-reload, sans brouillons)
+make serve DEBUG=true   # avec brouillons (draft: true) et articles à date future
 make build       # Génère public/ (minifié, nettoie les anciens fichiers)
 make check       # Build + vérifie que public/ ne contient que le site
 make deploy      # Check + upload SFTP via lftp (requiert .env)

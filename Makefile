@@ -11,6 +11,16 @@ RESOURCES_GEN := resources/_gen
 # Environnement : make <cible> ENV=prod|preprod (prod par défaut)
 ENV ?= prod
 
+# Mode de make serve : DEBUG=true affiche aussi les brouillons (draft: true) et les articles à date future
+DEBUG ?= false
+ifeq ($(DEBUG),true)
+  SERVE_FLAGS := -D -F
+else ifeq ($(DEBUG),false)
+  SERVE_FLAGS :=
+else
+  $(error DEBUG doit valoir "true" ou "false" (reçu : "$(DEBUG)"))
+endif
+
 ifeq ($(ENV),prod)
   DEST := $(FTP_PATH)
   HUGO_ENV_FLAGS :=
@@ -46,7 +56,7 @@ endif
 
 help:
 	@echo "Targets disponibles (ENV=prod|preprod, prod par défaut) :"
-	@echo "  make serve       Serveur de développement local (http://localhost:1313)"
+	@echo "  make serve       Serveur local http://localhost:1313 (DEBUG=true : brouillons et dates futures visibles)"
 	@echo "  make build       Construit le site dans public/ (ex. make build ENV=preprod)"
 	@echo "  make check       Build + vérifie que public/ ne contient que le site"
 	@echo "  make clean       Supprime public/ et resources/_gen/"
@@ -79,7 +89,7 @@ endif
 	@echo "Contenu de $(PUBLIC)/ :"; find $(PUBLIC) -type f | sort | sed 's/^/  /'
 
 serve:
-	$(HUGO) server -D
+	$(HUGO) server $(SERVE_FLAGS)
 
 clean:
 	rm -rf $(PUBLIC) $(RESOURCES_GEN)

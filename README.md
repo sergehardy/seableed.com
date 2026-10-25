@@ -15,7 +15,8 @@ cp .env.example .env   # puis renseigner FTP_HOST, FTP_USER, FTP_PASS, FTP_PATH 
 ### Commandes
 
 ```bash
-make serve       # http://localhost:1313, hot-reload, brouillons inclus
+make serve       # http://localhost:1313, hot-reload, comme en production (sans brouillons)
+make serve DEBUG=true   # idem avec les brouillons (draft: true) et les articles à date future
 make build       # génère public/ (minifié, supprime les anciens fichiers)
 make check       # build + vérifie que public/ ne contient que le site
 make deploy-dry  # simule le déploiement SFTP (à lancer avant deploy)
@@ -23,6 +24,8 @@ make deploy      # check + upload SFTP (attention : mirror --delete)
 make ftp         # session SFTP interactive (cd dans le dossier de l'environnement)
 make clean       # supprime public/ et resources/_gen/
 ```
+
+`make serve DEBUG=true|false` (défaut `false`) choisit d'afficher ou non les brouillons.
 
 `build`, `check`, `deploy`, `deploy-dry` et `ftp` acceptent `ENV=prod` (défaut) ou `ENV=preprod`. Toute autre valeur est refusée.
 
@@ -118,7 +121,7 @@ Créer un fichier Markdown dans `content/blog/` :
 title: "Titre de l'article"
 date: 2026-11-01
 summary: "Une phrase pour la liste (facultatif)."
-draft: false   # true : non publié par make build
+draft: false   # true : non publié par make build (visible avec make serve DEBUG=true)
 ---
 
 Texte de l'article en Markdown.
